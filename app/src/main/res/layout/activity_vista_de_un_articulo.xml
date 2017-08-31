@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context="com.infinitycr.amadecasa.VistaDeUnArticulo">
+
+    <ScrollView
+        android:layout_width="1080px"
+        android:layout_height="wrap_content"
+
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/ivFotoPrenda"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtCodArt"
+                android:text="Codigo Articulo"
+                android:textSize="21sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/tvCodArticulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tvDescripcionPrenda"
+                android:background="@color/filaArtCodArt"
+                android:text="ca"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tituloLista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/iconLista"
+                android:background="@color/filaArtNombre"
+                android:text="Nombre de la prenda"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvNombrePrenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tituloLista"
+                android:background="@color/filaArtNombre"
+                android:text="np"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtCodArt"
+                android:text="Categoria"
+                android:textSize="21sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/tvCategoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtCodArt"
+                android:text="cat"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtNombre"
+                android:text="Precio"
+                android:textSize="21sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/tvPrecioPrenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtNombre"
+                android:text="pre"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvNombrePrenda"
+                android:layout_alignStart="@+id/tvNombrePrenda"
+                android:layout_below="@+id/tvNombrePrenda"
+                android:background="@color/filaArtCodArt"
+                android:text="Descripcion"
+                android:textSize="21sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/tvDescripcionPrenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView16"
+                android:layout_alignStart="@+id/textView16"
+                android:layout_below="@+id/textView16"
+                android:background="@color/filaArtCodArt"
+                android:text="des"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtNombre"
+                android:text="Colores"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvColores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtNombre"
+                android:text="col"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtCodArt"
+                android:text="Genero"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvGenero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtCodArt"
+                android:text="gen"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtNombre"
+                android:text="Marca"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMarcaPrenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/filaArtNombre"
+                android:text="mar"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnModificarArt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Modificar Articulo"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="403dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
