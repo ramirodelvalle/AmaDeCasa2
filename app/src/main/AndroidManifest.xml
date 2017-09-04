@@ -27,36 +27,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".SubirArticulo"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.SUBIRARTICULO" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".VerArticulos"
+        <activity
+            android:name=".VerArticulos"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".VistaDeUnArticulo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VistaDeUnArticulo"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".modificarArticulo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".modificarArticulo"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".CrearUsuario"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CrearUsuario"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".OpcArticulos"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OpcArticulos"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".TalleRopaInteriorMujer" />
+        <activity android:name=".VistaDeTalles"></activity>
     </application>
 
 </manifest>

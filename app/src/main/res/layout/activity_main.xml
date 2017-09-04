@@ -51,6 +51,12 @@
                 android:layout_height="wrap_content"
                 android:text="Crear Cuenta" />
 
+            <Button
+                android:id="@+id/btnTalles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Talles" />
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

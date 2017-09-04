@@ -13,7 +13,7 @@ import java.io.Serializable;
 /**
  * Created by ramir on 11/8/2017.
  */
-
+//////////kl;
 public class Articulo implements Serializable{
 
     private static final long serialVersionUID = 1L;

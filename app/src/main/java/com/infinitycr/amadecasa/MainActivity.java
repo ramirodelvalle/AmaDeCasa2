@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnSubirArticulo;
     Button btnVerArticulos;
     Button btnCrearUsuario;
-
+    Button btnTalles;
 
 
     @Override
@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSubirArticulo.setOnClickListener(this);
         btnVerArticulos = (Button) findViewById(R.id.btnVerArticulos);
         btnVerArticulos.setOnClickListener(this);
+        btnTalles = (Button) findViewById(R.id.btnTalles);
+        btnTalles.setOnClickListener(this);
     }
 
 
@@ -45,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnCrearCuenta:
                 Intent intent3 = new Intent(this,CrearUsuario.class);   //busca la pantalla q va a abrir
                 startActivity(intent3);  //ABRE LA ACTIVITY
+                break;
+            case R.id.btnTalles:
+                Intent intent4 = new Intent(this,VistaDeTalles.class);   //busca la pantalla q va a abrir
+                startActivity(intent4);  //ABRE LA ACTIVITY
                 break;
         }
     }
