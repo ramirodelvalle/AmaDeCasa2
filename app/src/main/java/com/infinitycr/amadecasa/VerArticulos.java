@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.infinitycr.amadecasa.clases.BD;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 

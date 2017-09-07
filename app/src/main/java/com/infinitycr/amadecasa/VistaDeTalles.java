@@ -9,6 +9,7 @@ import android.widget.Button;
 public class VistaDeTalles extends AppCompatActivity implements View.OnClickListener {
 
     Button btnTalleRopaInteriorMujer;
+    Button btnTalleCorpinios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +18,8 @@ public class VistaDeTalles extends AppCompatActivity implements View.OnClickList
 
         btnTalleRopaInteriorMujer = (Button) findViewById(R.id.btnTalleRopaInteriorMujer);
         btnTalleRopaInteriorMujer.setOnClickListener(this);
+        btnTalleCorpinios = (Button) findViewById(R.id.btnTalleCorpinios);
+        btnTalleCorpinios.setOnClickListener(this);
     }
 
     public void onClick(View v) {
@@ -24,6 +27,10 @@ public class VistaDeTalles extends AppCompatActivity implements View.OnClickList
             case R.id.btnTalleRopaInteriorMujer:
                 Intent intent = new Intent(this, TalleRopaInteriorMujer.class);   //busca la pantalla q va a abrir
                 startActivity(intent);  //ABRE LA ACTIVITY
+                break;
+            case R.id.btnTalleCorpinios:
+                Intent intent2 = new Intent(this, TalleCoripinio.class);   //busca la pantalla q va a abrir
+                startActivity(intent2);  //ABRE LA ACTIVITY
                 break;
         }
     }

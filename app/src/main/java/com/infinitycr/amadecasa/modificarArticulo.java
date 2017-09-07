@@ -3,7 +3,6 @@ package com.infinitycr.amadecasa;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,7 +19,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.infinitycr.amadecasa.clases.BD;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;

@@ -24,6 +24,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ropa Interior Mujer" />
+
+            <Button
+                android:id="@+id/btnTalleCorpinios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CORPIños" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

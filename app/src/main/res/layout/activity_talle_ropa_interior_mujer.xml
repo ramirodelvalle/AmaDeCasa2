@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.infinitycr.amadecasa.TalleRopaInteriorMujer">
 
     <ScrollView
@@ -33,7 +34,7 @@
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="168dp"
                 app:srcCompat="@drawable/talles_ropa_interior_tabla" />
 
             <ImageView
@@ -50,13 +51,6 @@
                 android:textColor="@color/rosaLetras"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView33"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold|italic" />
 
             <TextView
                 android:id="@+id/textView34"
@@ -87,13 +81,6 @@
                 android:textColor="@color/rosaLetras" />
 
             <TextView
-                android:id="@+id/textView37"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold|italic" />
-
-            <TextView
                 android:id="@+id/textView39"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,13 +97,6 @@
                 android:layout_weight="1"
                 android:text="Coloca la cinta alrededor de la parte mas angosta de tu linea de cintura."
                 android:textColor="@color/rosaLetras" />
-
-            <TextView
-                android:id="@+id/textView40"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold|italic" />
 
             <TextView
                 android:id="@+id/textView42"

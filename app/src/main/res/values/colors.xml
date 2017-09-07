@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="rosaLetras">#f2256b</color>
+    <color name="colorPrimary">#FF9900</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorGris">#CCCCCC</color>
     <color name="colorAccent">#FF4081</color>
     <color name="fondoMain">#FF669900</color>
-    <color name="filaArtCodArt">#257d9e</color>
+    <color name="filaArtCodArt">#00bbff</color>
     <color name="filaArtNombre">#ff9d00</color>
-    <color name="rosaLetras">#f2256b</color>
+    <color name="btnVaron">#607D8B</color>
+    <color name="btnMujer">#F48FB1</color>
+    <color name="btnLog">#FFFF99</color>
 </resources>

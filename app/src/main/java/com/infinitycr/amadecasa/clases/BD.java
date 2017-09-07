@@ -1,4 +1,4 @@
-package com.infinitycr.amadecasa;
+package com.infinitycr.amadecasa.clases;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,9 +15,9 @@ public class BD extends SQLiteOpenHelper{
     String SQL_CREAR_TABLA_ARTICULOS = "CREATE TABLE articulos (codArticulo INTEGER PRIMARY KEY AUTOINCREMENT," +
                        "nombre TEXT, categoria TEXT, descripcion TEXT, precio REAL," +
                        "colores TEXT, genero TEXT,marca TEXT)";
-    String SQL_CREAR_TABLA_USUARIOS = "CREATE TABLE usuarios (mailUsuario TEXT PRIMARY KEY," +
-                        "nombre TEXT, anioNacimiento INT, direccion TEXT, localidad TEXT," +
-                        "genero TEXT, coloresFavoritos TEXT) ";
+    String SQL_CREAR_TABLA_USUARIOS = "CREATE TABLE usuarios (mailUsuario TEXT PRIMARY KEY,passWord TEXT," +
+            "nombre TEXT, anioNacimiento INT, direccion TEXT, localidad TEXT," +
+            "genero TEXT, coloresFavoritos TEXT) ";
 
     public BD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

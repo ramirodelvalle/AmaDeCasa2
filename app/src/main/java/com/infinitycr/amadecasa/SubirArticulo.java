@@ -1,18 +1,14 @@
 package com.infinitycr.amadecasa;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,28 +18,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
+import com.infinitycr.amadecasa.clases.BD;
+
+
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.breadCrumbShortTitle;
-import static android.R.attr.name;
 
 public class SubirArticulo extends AppCompatActivity implements View.OnClickListener {
 
@@ -202,8 +187,6 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
             Articulo[] articuloV = new Articulo[c.getCount()]; //OBTENGO LA CANTIDAD DE REGISTROS Y SE LO ASIGNO AL VECTOR
             //Recorremos el cursor hasta que no haya más registros
             do {
-                //articuloV[i] = new Articulo();
-                //codArt = articuloV[i].getCodArticulo();
                 codArt = c.getInt(0);
                 i++;
             } while(c.moveToNext());
