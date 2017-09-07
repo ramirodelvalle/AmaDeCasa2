@@ -28,7 +28,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         tvRecuperarPassWord = (TextView) findViewById(R.id.recupera);
         tvRecuperarPassWord.setOnClickListener(this);
     }
-////////
+
     @Override
     public void onClick(View v) {
 
