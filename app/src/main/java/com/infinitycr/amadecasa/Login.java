@@ -15,7 +15,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     Button btnIniciar;
     TextView tvRecuperarPassWord;
     Button btnCrearCuenta;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +26,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         btnIniciar.setOnClickListener(this);
         tvRecuperarPassWord = (TextView) findViewById(R.id.recupera);
         tvRecuperarPassWord.setOnClickListener(this);
+
     }
 
     @Override
