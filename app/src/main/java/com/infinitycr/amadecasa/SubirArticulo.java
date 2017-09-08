@@ -159,7 +159,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         articulo.setNombrePrenda(etNombrePrenda.getText().toString());
         articulo.setCategoria(spCategoria.getSelectedItem().toString());
         articulo.setDescripcion(etDescripcionPrenda.getText().toString());
-        articulo.setPrecio(Float.parseFloat(etPrecioPrenda.getText().toString()));
+        articulo.setPrecio(etPrecioPrenda.getText().toString());
         articulo.setColores(getColores());
         articulo.setMarca(spMarca.getSelectedItem().toString());
         if (radioButtonF.isChecked()) {articulo.setGenero("femenino");} else {articulo.setGenero("masculino");}
@@ -217,7 +217,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
             return true;
         }
     }
-
+/*
     public void cargarTabla(SQLiteDatabase db){
         Articulo art[] = new Articulo[7];
         art[0] = new Articulo();
@@ -294,6 +294,8 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         db.close();
     }
 
+*/
+
     //VVVVVVVVVVVVVVVVVVVVV
     //VVVVVVVVVVVVVVVVVVVVV
     @Override
@@ -344,7 +346,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.btnCargarTabla:
-                cargarTabla(db);
+                //cargarTabla(db);
                 break;
 
         }

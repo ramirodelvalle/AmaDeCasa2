@@ -57,15 +57,15 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
             //Recorremos el cursor hasta que no haya mas registros
             do {
                 articulo[i] = new Articulo();
-                articulo[i].setCodArticulo(c.getInt(0));
+                articulo[i].setCodArticulo(c.getString(0));
                 articulo[i].setNombrePrenda(c.getString(1));
                 articulo[i].setCategoria(c.getString(2));
                 articulo[i].setDescripcion(c.getString(3));
-                articulo[i].setPrecio(c.getFloat(4));
+                articulo[i].setPrecio(c.getString(4));
                 articulo[i].setColores(c.getString(5));
                 articulo[i].setGenero(c.getString(6));
                 articulo[i].setMarca(c.getString(7));
-                imagenes[i] = cargarFoto(articulo[i].getCodArticulo());
+                //imagenes[i] = cargarFoto(articulo[i].getCodArticulo());
                 i++;
             } while(c.moveToNext());
         }

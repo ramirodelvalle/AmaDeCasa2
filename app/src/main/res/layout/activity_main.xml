@@ -57,6 +57,12 @@
                 android:layout_height="wrap_content"
                 android:text="Talles" />
 
+            <Button
+                android:id="@+id/btnToast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="toast" />
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

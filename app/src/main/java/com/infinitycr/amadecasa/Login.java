@@ -15,6 +15,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     Button btnIniciar;
     TextView tvRecuperarPassWord;
     Button btnCrearCuenta;
+    Button btnIrAMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         btnIniciar.setOnClickListener(this);
         tvRecuperarPassWord = (TextView) findViewById(R.id.recupera);
         tvRecuperarPassWord.setOnClickListener(this);
+        btnIrAMain = (Button) findViewById(R.id.btnIrAMain);
+        btnIrAMain.setOnClickListener(this);
 
     }
 
@@ -46,6 +49,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.btnIniciar:
 
 
+                break;
+            case R.id.btnIrAMain:
+                Intent intent2 = new Intent(this, MainActivity.class);
+                startActivity(intent2);
                 break;
 
 

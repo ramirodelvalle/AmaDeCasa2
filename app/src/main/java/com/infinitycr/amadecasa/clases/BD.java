@@ -6,14 +6,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.infinitycr.amadecasa.MainActivity;
+
+import java.io.IOException;
+
 /**
  * Created by ramir on 8/8/2017.
  */
 
 public class BD extends SQLiteOpenHelper{
 
-    String SQL_CREAR_TABLA_ARTICULOS = "CREATE TABLE articulos (codArticulo INTEGER PRIMARY KEY AUTOINCREMENT," +
-                       "nombre TEXT, categoria TEXT, descripcion TEXT, precio REAL," +
+    String SQL_CREAR_TABLA_ARTICULOS = "CREATE TABLE articulos (codArticulo TEXT PRIMARY KEY," +
+                       "nombre TEXT, categoria TEXT, descripcion TEXT, precio TEXT," +
                        "colores TEXT, genero TEXT,marca TEXT)";
     String SQL_CREAR_TABLA_USUARIOS = "CREATE TABLE usuarios (mailUsuario TEXT PRIMARY KEY,passWord TEXT," +
             "nombre TEXT, anioNacimiento INT, direccion TEXT, localidad TEXT," +
@@ -23,12 +27,14 @@ public class BD extends SQLiteOpenHelper{
         super(context, name, factory, version);
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         //SI NO EXISTE LA BD LA CREA Y EJECUTA LOS SIG COMANDOS
-        db.execSQL("DROP TABLE IF EXISTS articulos");
-        db.execSQL(SQL_CREAR_TABLA_ARTICULOS);
-        db.execSQL(SQL_CREAR_TABLA_USUARIOS);
+        //db.execSQL("DROP TABLE IF EXISTS articulos");
+        //db.execSQL(SQL_CREAR_TABLA_ARTICULOS);
+        //db.execSQL(SQL_CREAR_TABLA_USUARIOS);
+
     }
 
     @Override

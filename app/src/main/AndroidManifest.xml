@@ -25,6 +25,17 @@
             android:screenOrientation="portrait">
 
         </activity>
+
+        <activity
+            android:name=".Login"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".SubirArticulo"
             android:configChanges="orientation|keyboardHidden"
@@ -59,15 +70,7 @@
         <activity android:name=".VistaDeTalles" />
         <activity android:name=".TalleCoripinio" />
         <activity android:name=".RecuperaPassword" />
-        <activity
-            android:name=".Login"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
 
 
     </application>

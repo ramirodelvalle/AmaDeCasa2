@@ -1,6 +1,9 @@
 package com.infinitycr.amadecasa;
+import android.content.Context;
 import android.content.Intent;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -8,15 +11,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.infinitycr.amadecasa.clases.BD;
+import com.infinitycr.amadecasa.clases.ManejadorBaseDeDatos;
+import com.infinitycr.amadecasa.clases.ManejadorDeDatos;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    public static Context activity;
     Button btnSubirArticulo;
     Button btnVerArticulos;
     Button btnCrearUsuario;
     Button btnTalles;
+    Button btnToast;
 
+
+    ManejadorBaseDeDatos manejadorBD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +41,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnVerArticulos.setOnClickListener(this);
         btnTalles = (Button) findViewById(R.id.btnTalles);
         btnTalles.setOnClickListener(this);
+        btnToast = (Button) findViewById(R.id.btnToast);
+        btnToast.setOnClickListener(this);
+
+
+        activity = this;
+        manejadorBD = ManejadorBaseDeDatos.instance();
+
+        Cursor cursor = manejadorBD.select("SELECT * FROM articulos");
+
+        String cod;
+        String marca;
+        String precio;
+/*
+        while (cursor.moveToNext()) {
+            cod = cursor.getString(0);
+            marca = cursor.getString(1);
+            precio = cursor.getString(2);
+            funAgregarArticulo(cod,marca,precio);
+        }
+        cursor.close();
+*/
+
     }
 
+    public void funAgregarArticulo(String cod,String marca,String precio) {
+        BD bdArticulos = new BD(this, "BDArticulos", null, 1);
+        SQLiteDatabase db = bdArticulos.getWritableDatabase();
+        try {
+            String consulta = "INSERT INTO articulos (codArticulo,marca,precio)" +
+                    "VALUES('" + cod + "','" + marca + "','" + precio + "')";
+            //INSERTAR UN REGISTRO
+            db.execSQL(consulta);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+    }
 
     public void onClick(View v) {
+        BD bdArticulos = new BD(this, "BDArticulos", null, 1);
+        SQLiteDatabase db = bdArticulos.getWritableDatabase();
         switch (v.getId()){
             case R.id.btnSubirArticulo:
                 Intent intent = new Intent(this,SubirArticulo.class);   //busca la pantalla q va a abrir
@@ -51,6 +98,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnTalles:
                 Intent intent4 = new Intent(this,VistaDeTalles.class);   //busca la pantalla q va a abrir
                 startActivity(intent4);  //ABRE LA ACTIVITY
+                break;
+            case R.id.btnToast:
+
                 break;
         }
     }

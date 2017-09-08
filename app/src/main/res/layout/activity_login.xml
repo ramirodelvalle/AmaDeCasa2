@@ -75,6 +75,15 @@
             android:backgroundTint="@color/colorGris"
             android:text="Crear Usuario" />
 
+        <Button
+            android:id="@+id/btnIrAMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Ir a app" />
+
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

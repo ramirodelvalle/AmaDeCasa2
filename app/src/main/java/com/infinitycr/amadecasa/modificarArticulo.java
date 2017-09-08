@@ -116,7 +116,7 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
             cargarSpinner();
             etDescripcionPrenda.setText(articulo.getDescripcion(), TextView.BufferType.EDITABLE);
             etPrecioPrenda.setText(String.valueOf(articulo.getPrecio()), TextView.BufferType.EDITABLE);
-            ivFotoPrenda.setImageBitmap(cargarFoto(articulo.getCodArticulo()));
+            //ivFotoPrenda.setImageBitmap(cargarFoto(articulo.getCodArticulo()));
             llenarColores();
             if (articulo.getGenero().equals("femenino")) {
                 radioButtonF.setChecked(true);
@@ -232,7 +232,7 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
         articulo.setNombrePrenda(etNombrePrenda.getText().toString());
         articulo.setCategoria(spCategoria.getSelectedItem().toString());
         articulo.setDescripcion(etDescripcionPrenda.getText().toString());
-        articulo.setPrecio(Float.parseFloat(etPrecioPrenda.getText().toString()));
+        articulo.setPrecio(etPrecioPrenda.getText().toString());
         articulo.setColores(getColores());
         if (radioButtonF.isChecked()) {
             articulo.setGenero("femenino");

@@ -17,12 +17,12 @@ import java.io.Serializable;
 public class Articulo implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    private int CodArticulo;
+    private String CodArticulo;
     private String NombrePrenda;
     private String Descripcion;
     private String Colores;
     private String Categoria;
-    private float Precio;
+    private String Precio;
     private String Genero;
     private String Marca;
     private FileInputStream RutaImagen;
@@ -30,8 +30,8 @@ public class Articulo implements Serializable{
 
     public Articulo(){}
 
-    public Articulo(int codArticulo,String nombrePrenda,String descripcion,String colores,
-                    String categoria,float precio,FileInputStream rutaImagen,String genero,String marca){
+    public Articulo(String codArticulo,String nombrePrenda,String descripcion,String colores,
+                    String categoria,String precio,FileInputStream rutaImagen,String genero,String marca){
         super();
         this.CodArticulo = codArticulo;
         this.NombrePrenda = nombrePrenda;
@@ -44,7 +44,7 @@ public class Articulo implements Serializable{
         this.Marca = marca;
     }
 
-    void setCodArticulo(int codArticulo){
+    void setCodArticulo(String codArticulo){
         CodArticulo = codArticulo;
     }
     void setNombrePrenda(String nombrePrenda){
@@ -59,7 +59,7 @@ public class Articulo implements Serializable{
     void setCategoria(String categoria){
         Categoria = categoria;
     }
-    void setPrecio(float precio){
+    void setPrecio(String precio){
         Precio = precio;
     }
     void setGenero(String genero){Genero = genero;}
@@ -71,7 +71,7 @@ public class Articulo implements Serializable{
         imagen = bmp;
     }
 
-    int getCodArticulo(){
+    String getCodArticulo(){
         return CodArticulo;
     }
     String getNombrePrenda(){
@@ -86,7 +86,7 @@ public class Articulo implements Serializable{
     String getCategoria(){
         return Categoria;
     }
-    float getPrecio(){return Precio;}
+    String getPrecio(){return Precio;}
     String getGenero(){return Genero;}
     String getMarca(){return Marca;}
     FileInputStream getRutaImagen(){
