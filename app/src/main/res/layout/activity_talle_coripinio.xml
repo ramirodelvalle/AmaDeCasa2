@@ -7,262 +7,256 @@
     android:background="@android:color/white"
     tools:context="com.infinitycr.amadecasa.TalleCoripinio">
 
-    <RelativeLayout
-        android:layout_width="395dp"
-        android:layout_height="587dp"
+    <ScrollView
+        android:layout_width="1080px"
+        android:layout_height="1920px"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
-        <ScrollView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
 
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GUIA DE TALLES CORPIños"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/rosaLetras"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="COMO ELEGIR TU TALLE"
+                android:textAlignment="center"
+                android:textColor="@color/rosaLetras"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_weight="2.54"
+                app:srcCompat="@drawable/corpinio" />
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="contorno torax                    contorno busto"
+                android:textAlignment="center"
+                android:textColor="@color/rosaLetras"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:background="@android:color/black">
 
-
-                <TextView
-                    android:id="@+id/textView27"
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="GUIA DE TALLES CORPIños"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:textColor="@color/rosaLetras"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView26"
+
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="Contorno Torax"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="68 a 72 cm"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/textView44"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="73 a 77 cm"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="78 a 82 cm"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/textView37"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="83 a 87 cm"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="COMO ELEGIR TU TALLE"
-                    android:textAlignment="center"
-                    android:textColor="@color/rosaLetras"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imageView"
+                    <TextView
+                        android:id="@+id/textView45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="Contorno Busto"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/textView46"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="82 a 91 cm"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView47"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="87 a 96 cm"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView48"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="92 a 104 cm"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView49"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="97 a 109 cm"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_weight="2.54"
-                    app:srcCompat="@drawable/corpinio" />
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView29"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="contorno torax                    contorno busto"
-                    android:textAlignment="center"
-                    android:textColor="@color/rosaLetras"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/textView50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="TU TALLE ES"
+                        android:textColor="@color/rosaLetras"
+                        android:textSize="14sp"
+                        android:textStyle="bold|italic" />
 
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/black">
+                    <TextView
+                        android:id="@+id/textView51"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="85/1"
+                        android:textAlignment="center"
+                        android:textColor="@color/rosaLetras"
+                        android:textSize="14sp"
+                        android:textStyle="bold|italic" />
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/textView52"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="90/2"
+                        android:textAlignment="center"
+                        android:textColor="@color/rosaLetras"
+                        android:textSize="14sp"
+                        android:textStyle="bold|italic" />
 
+                    <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="95/3"
+                        android:textAlignment="center"
+                        android:textColor="@color/rosaLetras"
+                        android:textSize="14sp"
+                        android:textStyle="bold|italic" />
 
-                        <TextView
-                            android:id="@+id/textView35"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="Contorno Torax"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/textView54"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:background="@android:color/white"
+                        android:text="100/4"
+                        android:textAlignment="center"
+                        android:textColor="@color/rosaLetras"
+                        android:textSize="14sp"
+                        android:textStyle="bold|italic" />
+                </TableRow>
 
+            </TableLayout>
 
-                        <TextView
-                            android:id="@+id/textView33"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="68 a 72 cm"
-                            android:textAlignment="center"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
 
-
-                        <TextView
-                            android:id="@+id/textView44"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="73 a 77 cm"
-                            android:textAlignment="center"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-                            android:id="@+id/textView40"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="78 a 82 cm"
-                            android:textAlignment="center"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-                            android:id="@+id/textView37"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="83 a 87 cm"
-                            android:textAlignment="center"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/textView45"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="Contorno Busto"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-                            android:id="@+id/textView46"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="82 a 91 cm"
-                            android:textAlignment="center"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/textView47"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="87 a 96 cm"
-                            android:textAlignment="center"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/textView48"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="92 a 104 cm"
-                            android:textAlignment="center"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/textView49"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="97 a 109 cm"
-                            android:textAlignment="center"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/textView50"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="TU TALLE ES"
-                            android:textColor="@color/rosaLetras"
-                            android:textSize="14sp"
-                            android:textStyle="bold|italic" />
-
-                        <TextView
-                            android:id="@+id/textView51"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="85/1"
-                            android:textAlignment="center"
-                            android:textColor="@color/rosaLetras"
-                            android:textSize="14sp"
-                            android:textStyle="bold|italic" />
-
-                        <TextView
-                            android:id="@+id/textView52"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="90/2"
-                            android:textAlignment="center"
-                            android:textColor="@color/rosaLetras"
-                            android:textSize="14sp"
-                            android:textStyle="bold|italic" />
-
-                        <TextView
-                            android:id="@+id/textView53"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="95/3"
-                            android:textAlignment="center"
-                            android:textColor="@color/rosaLetras"
-                            android:textSize="14sp"
-                            android:textStyle="bold|italic" />
-
-                        <TextView
-                            android:id="@+id/textView54"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:background="@android:color/white"
-                            android:text="100/4"
-                            android:textAlignment="center"
-                            android:textColor="@color/rosaLetras"
-                            android:textSize="14sp"
-                            android:textStyle="bold|italic" />
-                    </TableRow>
-
-                </TableLayout>
-
-            </LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

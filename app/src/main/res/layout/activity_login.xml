@@ -7,83 +7,90 @@
     android:background="@android:color/white"
     tools:context="com.infinitycr.amadecasa.Login">
 
-    <RelativeLayout
-        android:layout_width="400dp"
-        android:layout_height="589dp"
+    <ScrollView
+        android:layout_width="1080px"
+        android:layout_height="1920px"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/icono_app" />
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/imageView"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="36dp"
-            android:hint="@string/pide_Email" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/icono_app" />
 
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/editText"
-            android:layout_gravity="center"
-            android:layout_marginTop="23dp"
-            android:hint="@string/pide_Pass"
-            android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageView"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:hint="@string/pide_Email" />
 
-        <Button
-            android:id="@+id/btnIniciar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editText2"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/btnLog"
-            android:text="INGRESAR" />
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/editText"
+                android:layout_gravity="center"
+                android:layout_marginTop="23dp"
+                android:hint="@string/pide_Pass"
+                android:inputType="textPassword" />
 
-        <TextView
-            android:id="@+id/recupera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnIniciar"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="41dp"
-            android:text="@string/recupera_Pass"
-            android:textColor="@color/colorPrimary" />
+            <Button
+                android:id="@+id/btnIniciar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editText2"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/btnLog"
+                android:text="INGRESAR" />
 
-        <Button
-            android:id="@+id/btnCrearCuenta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:backgroundTint="@color/colorGris"
-            android:text="Crear Usuario" />
+            <TextView
+                android:id="@+id/recupera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnIniciar"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="41dp"
+                android:text="@string/recupera_Pass"
+                android:textColor="@color/colorPrimary" />
 
-        <Button
-            android:id="@+id/btnIrAMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="Ir a app" />
+            <Button
+                android:id="@+id/btnCrearCuenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:backgroundTint="@color/colorGris"
+                android:text="Crear Usuario" />
+
+            <Button
+                android:id="@+id/btnIrAMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/recupera"
+                android:layout_marginTop="15dp"
+                android:text="Ir a app" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -5,7 +5,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorGris">#CCCCCC</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="fondoMain">#FF669900</color>
+    <color name="fondoMain">#FFFFFFFF</color>
     <color name="filaArtCodArt">#00bbff</color>
     <color name="filaArtNombre">#ff9d00</color>
     <color name="btnVaron">#607D8B</color>
