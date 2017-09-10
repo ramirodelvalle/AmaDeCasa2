@@ -17,11 +17,10 @@ import java.io.IOException;
 public class BD extends SQLiteOpenHelper{
 
     String SQL_CREAR_TABLA_ARTICULOS = "CREATE TABLE articulos (codArticulo TEXT PRIMARY KEY," +
-                       "nombre TEXT, categoria TEXT, descripcion TEXT, precio TEXT," +
-                       "colores TEXT, genero TEXT,marca TEXT)";
-    String SQL_CREAR_TABLA_USUARIOS = "CREATE TABLE usuarios (mailUsuario TEXT PRIMARY KEY,passWord TEXT," +
-            "nombre TEXT, anioNacimiento INT, direccion TEXT, localidad TEXT," +
-            "genero TEXT, coloresFavoritos TEXT) ";
+                                       "nombre TEXT, categoria TEXT, descripcion TEXT, precio TEXT," +
+                                       "colores TEXT, genero TEXT,marca TEXT)";
+    String SQL_CREAR_TABLA_USUARIOS = "CREATE TABLE usuarios (mailUsuario TEXT PRIMARY KEY,nombre TEXT,passWord TEXT," +
+                                      "direccion TEXT, localidad TEXT, cp INT, genero TEXT, coloresFavoritos TEXT) ";
 
     public BD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -31,10 +30,10 @@ public class BD extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         //SI NO EXISTE LA BD LA CREA Y EJECUTA LOS SIG COMANDOS
-        //db.execSQL("DROP TABLE IF EXISTS articulos");
-        //db.execSQL(SQL_CREAR_TABLA_ARTICULOS);
-        //db.execSQL(SQL_CREAR_TABLA_USUARIOS);
-
+        db.execSQL("DROP TABLE IF EXISTS articulos");
+        db.execSQL("DROP TABLE IF EXISTS usuarios");
+        db.execSQL(SQL_CREAR_TABLA_ARTICULOS);
+        db.execSQL(SQL_CREAR_TABLA_USUARIOS);
     }
 
     @Override
@@ -50,5 +49,9 @@ public class BD extends SQLiteOpenHelper{
 
     public String actualizarTablaArt(){
         return SQL_CREAR_TABLA_ARTICULOS;
+    }
+
+    public String actualizarTablaUsuarios(){
+        return SQL_CREAR_TABLA_USUARIOS;
     }
 }

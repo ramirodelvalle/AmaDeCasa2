@@ -217,8 +217,9 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
             return true;
         }
     }
-/*
+
     public void cargarTabla(SQLiteDatabase db){
+        /*
         Articulo art[] = new Articulo[7];
         art[0] = new Articulo();
         art[0].setNombrePrenda("remera roja");
@@ -292,16 +293,17 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
             }
         }
         db.close();
+        */
     }
 
-*/
+
 
     //VVVVVVVVVVVVVVVVVVVVV
     //VVVVVVVVVVVVVVVVVVVVV
     @Override
     public void onClick (View v){
-        BD bdArticulos = new BD(this, "BDArticulos", null, 1);
-        SQLiteDatabase db = bdArticulos.getWritableDatabase();
+        BD bdPaoPrendas = new BD(this, "BDPaoPrendas", null, 1);
+        SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         switch (v.getId()) {
             case R.id.btnTomarFoto:
                 intentImagen = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //ABRE LA ACTIVIDAD DE LA CAMARA
@@ -342,7 +344,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btnBorrarTabla:
                 db.execSQL("DROP TABLE IF EXISTS articulos");
-                db.execSQL(bdArticulos.actualizarTablaArt());
+                db.execSQL(bdPaoPrendas.actualizarTablaArt());
                 break;
 
             case R.id.btnCargarTabla:

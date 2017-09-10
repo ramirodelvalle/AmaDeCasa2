@@ -33,11 +33,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    public void ingresar(){
+
+    }
+
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
-
             case R.id.btnCrearCuenta:
                 Intent intent = new Intent(this, CrearUsuario.class);//busca la pantalla q va a abrir
                 startActivity(intent);  //ABRE LA ACTIVITY
@@ -47,8 +49,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent1);
                 break;
             case R.id.btnIniciar:
-
-
+                ingresar();
                 break;
             case R.id.btnIrAMain:
                 Intent intent2 = new Intent(this, MainActivity.class);

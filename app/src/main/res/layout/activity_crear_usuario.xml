@@ -8,7 +8,7 @@
     tools:context="com.infinitycr.amadecasa.CrearUsuario">
 
     <ScrollView
-        android:layout_width="1080px"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
@@ -52,6 +52,28 @@
                 android:inputType="textEmailAddress" />
 
             <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView"
+                android:layout_alignStart="@+id/textView"
+                android:layout_below="@+id/textView"
+                android:layout_marginTop="21dp"
+                android:text="Ingrese su nombre"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView2"
+                android:layout_alignStart="@+id/textView2"
+                android:layout_below="@+id/textView2"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
                 android:id="@+id/tvPassWord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,7 +100,7 @@
                 android:layout_alignStart="@+id/textView"
                 android:layout_below="@+id/textView"
                 android:layout_marginTop="21dp"
-                android:text="repita la contraseña"
+                android:text="Repita la contraseña"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -88,50 +110,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPassword" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView"
-                android:layout_alignStart="@+id/textView"
-                android:layout_below="@+id/textView"
-                android:layout_marginTop="21dp"
-                android:text="Ingrese su nombre"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/etNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView2"
-                android:layout_alignStart="@+id/textView2"
-                android:layout_below="@+id/textView2"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/etNombre"
-                android:layout_alignStart="@+id/etNombre"
-                android:layout_below="@+id/etNombre"
-                android:text="Ingrese su edad"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/etEdad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textView3"
-                android:layout_alignStart="@+id/textView3"
-                android:layout_below="@+id/textView3"
-                android:ems="10"
-                android:hint="ej: 28"
-                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -146,14 +124,14 @@
 
             <EditText
                 android:id="@+id/etDireccion"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/textView5"
                 android:layout_alignStart="@+id/textView5"
                 android:layout_below="@+id/textView5"
                 android:ems="10"
                 android:hint="ej: Francia 5023"
-                android:inputType="textPersonName" />
+                android:inputType="text" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -168,13 +146,32 @@
 
             <EditText
                 android:id="@+id/etLocalidad"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/etDireccion"
                 android:layout_alignRight="@+id/etDireccion"
                 android:layout_below="@+id/textView6"
                 android:ems="10"
                 android:hint="ej: Pacheco"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Codigo Postal"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etCp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/etDireccion"
+                android:layout_alignRight="@+id/etDireccion"
+                android:layout_below="@+id/textView6"
+                android:ems="10"
+                android:hint="ej: 1621"
                 android:inputType="textPersonName" />
 
             <TextView
@@ -228,7 +225,9 @@
 
             <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
 
                 <CheckBox
                     android:id="@+id/chkRojo"
@@ -241,7 +240,7 @@
                     android:textStyle="bold" />
 
                 <CheckBox
-                    android:id="@+id/checkBox12"
+                    android:id="@+id/chkNaranja"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
