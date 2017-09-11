@@ -32,8 +32,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        BD bdPaoPrendas = new BD(this, "BDPaoPrendas", null, 1);
+        SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         asigObjXML();
-        cargarUsuario();
+        cargarUsuario(db);
     }
 
     public void asigObjXML(){
@@ -49,37 +51,45 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         btnIrAMain.setOnClickListener(this);
     }
 
-    public void cargarUsuario(){
+    public void cargarUsuario(SQLiteDatabase db){
         SharedPreferences preferences = getSharedPreferences("sesion",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         etMail.setText(preferences.getString("mail","no tenia datos cargados"));
+        etPassword.setText(preferences.getString("pass","no tenia datos cargados"));
+        if(!etMail.getText().toString().isEmpty()){
+            ingresar(db);
+        }
     }
 
-    public void dejarSesionActiva(){
+    public void dejarSesionActiva(String nombre){
         SharedPreferences preferences = getSharedPreferences("sesion",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("mail",etMail.getText().toString());
+        editor.putString("pass",etPassword.getText().toString());
+        editor.putString("nombre",nombre);
         editor.apply();
     }
 
-    public boolean ingresar(SQLiteDatabase db,Context context){
+    public void ingresar(SQLiteDatabase db){
         Cursor c = db.rawQuery("SELECT * FROM usuarios", null);
         if (c.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             do {
                 String mail = c.getString(0);
+                String nombre = c.getString(1);
                 String pass = c.getString(2);
                 if(mail.equals(etMail.getText().toString()) &&
                         pass.equals(etPassword.getText().toString())){
-                    dejarSesionActiva();
+                    dejarSesionActiva(nombre);
                     c.close();
-                    return true;
+                    Intent intent3 = new Intent(this, MainActivity.class);
+                    startActivity(intent3);
+                    return;
                 }
             } while(c.moveToNext());
         }
         Toast.makeText(this,"Mail o contraseña erroneas",Toast.LENGTH_SHORT).show();
         c.close();
-        return false;
     }
 
     @Override
@@ -96,10 +106,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent1);
                 break;
             case R.id.btnIniciar:
-                if(ingresar(db,context)){
-                    Intent intent3 = new Intent(this, MainActivity.class);
-                    startActivity(intent3);
-                }
+                ingresar(db);
                 break;
             case R.id.btnIrAMain:
                 Intent intent2 = new Intent(this, MainActivity.class);

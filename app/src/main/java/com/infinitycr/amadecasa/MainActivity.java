@@ -2,6 +2,7 @@ package com.infinitycr.amadecasa;
 import android.content.Context;
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.infinitycr.amadecasa.clases.BD;
 import com.infinitycr.amadecasa.clases.ManejadorBaseDeDatos;
@@ -24,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnCrearUsuario;
     Button btnTalles;
     Button btnToast;
-
+    Button btnCerrarSesion;
+    TextView tvUsuario;
 
     ManejadorBaseDeDatos manejadorBD;
 
@@ -43,7 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnTalles.setOnClickListener(this);
         btnToast = (Button) findViewById(R.id.btnToast);
         btnToast.setOnClickListener(this);
-
+        btnCerrarSesion = (Button) findViewById(R.id.btnCerrarSesion);
+        btnCerrarSesion.setOnClickListener(this);
+        tvUsuario = (TextView) findViewById(R.id.tvUsuario);
 
         activity = this;
         manejadorBD = ManejadorBaseDeDatos.instance();
@@ -53,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String cod;
         String marca;
         String precio;
+        cargarUsuario();
 /*
         while (cursor.moveToNext()) {
             cod = cursor.getString(0);
@@ -79,6 +85,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         db.close();
     }
 
+    public void cargarUsuario(){
+        SharedPreferences preferences = getSharedPreferences("sesion",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        tvUsuario.setText(preferences.getString("nombre","no tenia datos cargados"));
+    }
+
+    public void cerrarSesion(){
+        SharedPreferences preferences = getSharedPreferences("sesion",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("mail","");
+        editor.putString("pass","");
+        editor.apply();
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
+    }
+
     public void onClick(View v) {
         BD bdArticulos = new BD(this, "BDArticulos", null, 1);
         SQLiteDatabase db = bdArticulos.getWritableDatabase();
@@ -101,6 +123,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnToast:
 
+                break;
+            case R.id.btnCerrarSesion:
+                cerrarSesion();
                 break;
         }
     }
