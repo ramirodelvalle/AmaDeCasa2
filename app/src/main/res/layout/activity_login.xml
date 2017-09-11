@@ -27,7 +27,7 @@
                 android:src="@drawable/icono_app" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/etMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -38,12 +38,12 @@
                 android:hint="@string/pide_Email" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/editText"
+                android:layout_below="@+id/etMail"
                 android:layout_gravity="center"
                 android:layout_marginTop="23dp"
                 android:hint="@string/pide_Pass"
@@ -53,7 +53,7 @@
                 android:id="@+id/btnIniciar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText2"
+                android:layout_below="@+id/etPassword"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
