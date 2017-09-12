@@ -77,6 +77,12 @@
                 android:text="toast" />
 
             <Button
+                android:id="@+id/btnActualizarUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Actualizar Usuario" />
+
+            <Button
                 android:id="@+id/btnCerrarSesion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

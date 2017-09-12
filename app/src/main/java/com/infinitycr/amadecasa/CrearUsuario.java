@@ -151,12 +151,13 @@ public class CrearUsuario extends AppCompatActivity implements View.OnClickListe
                         e.printStackTrace();
                     }
                 }
-
                 break;
+
             case R.id.btnBorrarTabla:
                 db.execSQL("DROP TABLE IF EXISTS usuarios");
                 db.execSQL(bdPaoPrendas.actualizarTablaUsuarios());
                 break;
+
         }
     }
 }

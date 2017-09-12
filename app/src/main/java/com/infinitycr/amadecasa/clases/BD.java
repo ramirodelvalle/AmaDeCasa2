@@ -21,11 +21,10 @@ public class BD extends SQLiteOpenHelper{
                                        "colores TEXT, genero TEXT,marca TEXT)";
     String SQL_CREAR_TABLA_USUARIOS = "CREATE TABLE usuarios (mailUsuario TEXT PRIMARY KEY,nombre TEXT,passWord TEXT," +
                                       "direccion TEXT, localidad TEXT, cp INT, genero TEXT, coloresFavoritos TEXT) ";
-
+    String SQL_CREAR_TABLA_COMPRAS_POR_USUARIOS = "CREATE TABLE comprasXusuario (";
     public BD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {

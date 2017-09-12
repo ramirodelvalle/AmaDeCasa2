@@ -20,7 +20,7 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Login"
             android:configChanges="orientation|keyboardHidden"
@@ -65,7 +65,8 @@
         <activity android:name=".VistaDeTalles" />
         <activity android:name=".TalleCoripinio" />
         <activity android:name=".RecuperaPassword" />
-        <activity android:name=".Ventas"></activity>
+        <activity android:name=".Ventas" />
+        <activity android:name=".ModificarUsuario"></activity>
     </application>
 
 </manifest>

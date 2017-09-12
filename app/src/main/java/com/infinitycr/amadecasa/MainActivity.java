@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnSubirArticulo;
     Button btnVerArticulos;
     Button btnCrearUsuario;
+    Button btnActualizarUsuario;
     Button btnTalles;
     Button btnToast;
     Button btnCerrarSesion;
@@ -49,17 +50,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCerrarSesion = (Button) findViewById(R.id.btnCerrarSesion);
         btnCerrarSesion.setOnClickListener(this);
         tvUsuario = (TextView) findViewById(R.id.tvUsuario);
+        btnActualizarUsuario = (Button) findViewById(R.id.btnActualizarUsuario);
+        btnActualizarUsuario.setOnClickListener(this);
 
         activity = this;
+
+        cargarUsuario();
+        /*
         manejadorBD = ManejadorBaseDeDatos.instance();
-
         Cursor cursor = manejadorBD.select("SELECT * FROM articulos");
-
         String cod;
         String marca;
         String precio;
-        cargarUsuario();
-/*
         while (cursor.moveToNext()) {
             cod = cursor.getString(0);
             marca = cursor.getString(1);
@@ -67,22 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             funAgregarArticulo(cod,marca,precio);
         }
         cursor.close();
-*/
+        */
 
-    }
-
-    public void funAgregarArticulo(String cod,String marca,String precio) {
-        BD bdArticulos = new BD(this, "BDArticulos", null, 1);
-        SQLiteDatabase db = bdArticulos.getWritableDatabase();
-        try {
-            String consulta = "INSERT INTO articulos (codArticulo,marca,precio)" +
-                    "VALUES('" + cod + "','" + marca + "','" + precio + "')";
-            //INSERTAR UN REGISTRO
-            db.execSQL(consulta);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        db.close();
     }
 
     public void cargarUsuario(){
@@ -126,6 +114,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnCerrarSesion:
                 cerrarSesion();
+                break;
+            case R.id.btnActualizarUsuario:
+                Intent intent5 = new Intent(this,ModificarUsuario.class);   //busca la pantalla q va a abrir
+                startActivity(intent5);  //ABRE LA ACTIVITY
                 break;
         }
     }
