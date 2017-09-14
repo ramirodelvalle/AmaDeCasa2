@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cursor.close();
         */
 
-    }
+    }//kl;kl;
 
     public void cargarUsuario(){
         SharedPreferences preferences = getSharedPreferences("sesion",Context.MODE_PRIVATE);

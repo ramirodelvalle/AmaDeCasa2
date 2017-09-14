@@ -94,12 +94,18 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         //////////////////////////////////  SPINNER/DROP DOWN LIST
         spCategoria = (Spinner) findViewById(R.id.spCategoria);
         List list = new ArrayList();
-        list.add("Pantalones");
-        list.add("Remeras");
+        list.add("Bombachas");
         list.add("Buzos");
         list.add("Boxer");
-        list.add("Bombachas");
         list.add("Corpiños");
+        list.add("Conjuntos");
+        list.add("Mallas");
+        list.add("Medias");
+        list.add("Moda");
+        list.add("Pijamas");
+        list.add("Pantalones");
+        list.add("Remeras");
+        list.add("Ropa deportiva");
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategoria.setAdapter(arrayAdapter);
