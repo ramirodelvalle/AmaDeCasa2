@@ -121,10 +121,20 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         //////////////////////////////////  SPINNER/DROP DOWN LIST
         spMarca = (Spinner) findViewById(R.id.spMarca);
         List list2 = new ArrayList();
-        list2.add("Avon");
-        list2.add("Juana");
-        list2.add("DC");
-        list2.add("Nike");
+        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
+        SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
+        bdPaoPrendas.onUpgrade(db,1,1);
+        Cursor c = db.rawQuery("SELECT * FROM categoriasArt", null);
+        if (c.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            do {
+                String marca = c.getString(1);
+                list2.add(marca);
+            } while(c.moveToNext());
+        }
+        c.close();
+
+
         ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list2);
         arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spMarca.setAdapter(arrayAdapter2);
@@ -170,8 +180,8 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         articulo.setMarca(spMarca.getSelectedItem().toString());
         if (radioButtonF.isChecked()) {articulo.setGenero("femenino");} else {articulo.setGenero("masculino");}
         try {
-            String consulta = "INSERT INTO articulos (nombre,categoria,descripcion,precio,colores,genero,marca)"+
-                    "VALUES('"+articulo.getNombrePrenda()+"','"+articulo.getCategoria()+"','"+
+            String consulta = "INSERT INTO articulos (codArticulo,nombre,categoria,descripcion,precio,colores,genero,marca)"+
+                    "VALUES('"+articulo.getCodArticulo()+"','"+articulo.getNombrePrenda()+"','"+articulo.getCategoria()+"','"+
                     articulo.getDescripcion()+ "','"+articulo.getPrecio()+"','" +
                     articulo.getColores()+"','"+articulo.getGenero()+"','"+articulo.getMarca()+"')";
             //INSERTAR UN REGISTRO
@@ -303,12 +313,11 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
     }
 
 
-
     //VVVVVVVVVVVVVVVVVVVVV
     //VVVVVVVVVVVVVVVVVVVVV
     @Override
     public void onClick (View v){
-        BD bdPaoPrendas = new BD(this, "BDPaoPrendas", null, 1);
+        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         switch (v.getId()) {
             case R.id.btnTomarFoto:
@@ -343,7 +352,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
                         codArticulo = c.getString(0);
                         nombre = c.getString(1);
                         descripcion = c.getString(2);
-                        Toast.makeText(this,"codArticulo: "+ codArticulo+ " nombre: "+ nombre + " descripcion: "+descripcion,
+                        Toast.makeText(this,"codArticulo: "+codArticulo+ " nombre: "+nombre+ " descripcion: "+descripcion,
                                 Toast.LENGTH_SHORT).show();
                     } while(c.moveToNext());
                 }

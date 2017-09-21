@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -16,6 +17,11 @@ import android.widget.TextView;
 import com.infinitycr.amadecasa.clases.BD;
 import com.infinitycr.amadecasa.clases.ManejadorBaseDeDatos;
 import com.infinitycr.amadecasa.clases.ManejadorDeDatos;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -56,22 +62,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         activity = this;
 
         cargarUsuario();
-        /*
+
         manejadorBD = ManejadorBaseDeDatos.instance();
         Cursor cursor = manejadorBD.select("SELECT * FROM articulos");
         String cod;
         String marca;
         String precio;
+
+        String[] marcas = new String[100];
+
+        BD bdArticulos = new BD(this, "BDPP", null, 1);
+        SQLiteDatabase db = bdArticulos.getWritableDatabase();
+
+        for (int i=0; i<100; i++) {
+            marcas[i] = new String();
+            marcas[i] = "";
+        }
+        int pos=0;
         while (cursor.moveToNext()) {
             cod = cursor.getString(0);
             marca = cursor.getString(1);
             precio = cursor.getString(2);
-            funAgregarArticulo(cod,marca,precio);
+
+
+            boolean esta=false;
+            for (int i=0; i<100; i++) {
+
+                if(marcas[i].contains(marca)){
+                    esta = true;
+                }
+                if(i==99 && !esta){
+                    marcas[pos] = marca;
+                    funAgregarCat(db,marca);
+                    pos++;
+                }
+            }
+
         }
         cursor.close();
-        */
+    }
 
-    }//kl;kl;
+    public void funAgregarCat(SQLiteDatabase db,String marca){
+        try {
+            String consulta = "INSERT INTO categoriasArt(categoria)"+
+                    "VALUES('"+marca+"')";
+            //INSERTAR UN REGISTRO
+            db.execSQL(consulta);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
 
     public void cargarUsuario(){
         SharedPreferences preferences = getSharedPreferences("sesion",Context.MODE_PRIVATE);

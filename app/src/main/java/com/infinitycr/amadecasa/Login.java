@@ -68,7 +68,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         editor.putString("pass",etPassword.getText().toString());
         editor.putString("nombre",nombre);
         editor.apply();
-    }///////
+    }
 
     public void ingresar(SQLiteDatabase db){
         Cursor c = db.rawQuery("SELECT * FROM usuarios", null);

@@ -21,7 +21,11 @@ public class BD extends SQLiteOpenHelper{
                                        "colores TEXT, genero TEXT,marca TEXT)";
     String SQL_CREAR_TABLA_USUARIOS = "CREATE TABLE usuarios (mailUsuario TEXT PRIMARY KEY,nombre TEXT,passWord TEXT," +
                                       "direccion TEXT, localidad TEXT, cp INT, genero TEXT, coloresFavoritos TEXT) ";
+    String SQL_CREAR_TABLA_CATEGORIAS_ARTICULOS = "CREATE TABLE categoriasArt(" +
+                                                  "codCategoria INTEGER PRIMARY KEY AUTOINCREMENT," +
+                                                  "categoria TEXT)";
     String SQL_CREAR_TABLA_COMPRAS_POR_USUARIOS = "CREATE TABLE comprasXusuario (";
+
     public BD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -31,8 +35,10 @@ public class BD extends SQLiteOpenHelper{
         //SI NO EXISTE LA BD LA CREA Y EJECUTA LOS SIG COMANDOS
         db.execSQL("DROP TABLE IF EXISTS articulos");
         db.execSQL("DROP TABLE IF EXISTS usuarios");
+        db.execSQL("DROP TABLE IF EXISTS categoriasArt");
         db.execSQL(SQL_CREAR_TABLA_ARTICULOS);
         db.execSQL(SQL_CREAR_TABLA_USUARIOS);
+        db.execSQL(SQL_CREAR_TABLA_CATEGORIAS_ARTICULOS);
     }
 
     @Override
@@ -40,10 +46,11 @@ public class BD extends SQLiteOpenHelper{
         //SE ELIMINA LA VERSION ANTERIOR DE LA TABLA
         db.execSQL("DROP TABLE IF EXISTS articulos");
         db.execSQL("DROP TABLE IF EXISTS usuarios");
-
+        db.execSQL("DROP TABLE IF EXISTS categoriasArt");
         //SE CREA LA NUEVA VERSION DE LA TABLA
         db.execSQL(SQL_CREAR_TABLA_ARTICULOS);
         db.execSQL(SQL_CREAR_TABLA_USUARIOS);
+        db.execSQL(SQL_CREAR_TABLA_CATEGORIAS_ARTICULOS);
     }
 
     public String actualizarTablaArt(){
@@ -52,5 +59,9 @@ public class BD extends SQLiteOpenHelper{
 
     public String actualizarTablaUsuarios(){
         return SQL_CREAR_TABLA_USUARIOS;
+    }
+
+    public String actualizarTablaCategoriasArt(){
+        return SQL_CREAR_TABLA_CATEGORIAS_ARTICULOS;
     }
 }
