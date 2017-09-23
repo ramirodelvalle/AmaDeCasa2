@@ -71,7 +71,7 @@ public class ListaAdapter extends BaseAdapter {
         imgImg = (ImageView) itemView.findViewById(R.id.iconLista);
 
         //CAPTURA LA POSICION DEL ARTICULO Y SETEA LOS TextViews
-        tvCodArticulo.setText(String.valueOf(articulo[position].getCodArticulo()));
+        tvCodArticulo.setText(String.valueOf(articulo[position].getCodigo()));
         tvNombrePrenda.setText(articulo[position].getNombrePrenda());
         tvDescripcionPrenda.setText(articulo[position].getDescripcion());
         tvPrecioPrenda.setText("$ "+String.valueOf(articulo[position].getPrecio()));

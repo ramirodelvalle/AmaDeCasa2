@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String marca;
         String precio;
 
-        String[] marcas = new String[100];
+        String[] marcas = new String[500];
 
         BD bdArticulos = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdArticulos.getWritableDatabase();
-
-        for (int i=0; i<100; i++) {
+/*
+        for (int i=0; i<500; i++) {
             marcas[i] = new String();
             marcas[i] = "";
         }
@@ -84,21 +84,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             marca = cursor.getString(1);
             precio = cursor.getString(2);
 
-
+            if(marca.contains("ZAILU MALLAS")){
+                String asd = "0";
+            }
             boolean esta=false;
-            for (int i=0; i<100; i++) {
-
+            for (int i=0; i<500; i++) {
                 if(marcas[i].contains(marca)){
                     esta = true;
                 }
-                if(i==99 && !esta){
+                if(i==499 && esta==false){
                     marcas[pos] = marca;
                     funAgregarCat(db,marca);
+                    esta = true;
                     pos++;
                 }
             }
 
-        }
+        }*/
         cursor.close();
     }
 
@@ -133,8 +135,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
-        BD bdArticulos = new BD(this, "BDArticulos", null, 1);
-        SQLiteDatabase db = bdArticulos.getWritableDatabase();
         switch (v.getId()){
             case R.id.btnSubirArticulo:
                 Intent intent = new Intent(this,SubirArticulo.class);   //busca la pantalla q va a abrir

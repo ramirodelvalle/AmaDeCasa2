@@ -35,7 +35,7 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
         btnOpciones.setOnClickListener(this);
         //CODIGO DE LA LISTA PARA LLENARLA  ----------------------------------------------------------------------
         final ListView lvArticulos = (ListView) findViewById(R.id.ContenlistView);
-        BD bdArticulos = new BD(this, "BDArticulos", null, 1);  //CREO LA CONEXION A LA BD
+        BD bdArticulos = new BD(this, "BDPP", null, 1);  //CREO LA CONEXION A LA BD
         SQLiteDatabase db = bdArticulos.getWritableDatabase();
         String consultaSQL;
         Intent intent = getIntent();    //creo el objeto intent
@@ -57,15 +57,16 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
             //Recorremos el cursor hasta que no haya mas registros
             do {
                 articulo[i] = new Articulo();
-                articulo[i].setCodArticulo(c.getString(0));
-                articulo[i].setNombrePrenda(c.getString(1));
-                articulo[i].setCategoria(c.getString(2));
-                articulo[i].setDescripcion(c.getString(3));
-                articulo[i].setPrecio(c.getString(4));
-                articulo[i].setColores(c.getString(5));
-                articulo[i].setGenero(c.getString(6));
-                articulo[i].setMarca(c.getString(7));
-                //imagenes[i] = cargarFoto(articulo[i].getCodArticulo());
+                articulo[i].setCodArticulo(c.getInt(0));
+                articulo[i].setCodigo(c.getString(1));
+                articulo[i].setNombrePrenda(c.getString(2));
+                articulo[i].setCategoria(c.getString(3));
+                articulo[i].setDescripcion(c.getString(4));
+                articulo[i].setPrecio(c.getString(5));
+                articulo[i].setColores(c.getString(6));
+                articulo[i].setGenero(c.getString(7));
+                articulo[i].setMarca(c.getString(8));
+                imagenes[i] = cargarFoto(articulo[i].getCodArticulo());
                 i++;
             } while(c.moveToNext());
         }

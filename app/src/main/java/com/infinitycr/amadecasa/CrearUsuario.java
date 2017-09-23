@@ -127,7 +127,7 @@ public class CrearUsuario extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
-        BD bdPaoPrendas = new BD(this, "BDPaoPrendas", null, 1);
+        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         switch (v.getId()){
             case R.id.btnCrearUsuario:

@@ -50,7 +50,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/etCodigo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

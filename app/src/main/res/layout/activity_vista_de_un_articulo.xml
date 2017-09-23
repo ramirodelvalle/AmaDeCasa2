@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtCodArt"
                 android:text="Codigo Articulo"
+                android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold|italic" />
 
@@ -50,6 +51,7 @@
                 android:layout_below="@+id/tvDescripcionPrenda"
                 android:background="@color/filaArtCodArt"
                 android:text="ca"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -62,6 +64,7 @@
                 android:layout_below="@+id/iconLista"
                 android:background="@color/filaArtNombre"
                 android:text="Nombre de la prenda"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -74,6 +77,7 @@
                 android:layout_below="@+id/tituloLista"
                 android:background="@color/filaArtNombre"
                 android:text="np"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -83,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtCodArt"
                 android:text="Categoria"
+                android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold|italic" />
 
@@ -92,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtCodArt"
                 android:text="cat"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -101,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtNombre"
                 android:text="Precio"
+                android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold|italic" />
 
@@ -110,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtNombre"
                 android:text="pre"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -122,6 +130,7 @@
                 android:layout_below="@+id/tvNombrePrenda"
                 android:background="@color/filaArtCodArt"
                 android:text="Descripcion"
+                android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold|italic" />
 
@@ -134,6 +143,7 @@
                 android:layout_below="@+id/textView16"
                 android:background="@color/filaArtCodArt"
                 android:text="des"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -143,6 +153,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtNombre"
                 android:text="Colores"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -152,6 +163,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtNombre"
                 android:text="col"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -161,6 +173,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtCodArt"
                 android:text="Genero"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -170,6 +183,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtCodArt"
                 android:text="gen"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -179,6 +193,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtNombre"
                 android:text="Marca"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -188,6 +203,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/filaArtNombre"
                 android:text="mar"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

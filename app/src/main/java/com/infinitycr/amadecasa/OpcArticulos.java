@@ -1,10 +1,12 @@
 package com.infinitycr.amadecasa;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -56,6 +58,63 @@ public class OpcArticulos extends AppCompatActivity implements View.OnClickListe
 
     public void asigSpinners(){
         //////////////////////////////////  SPINNER/DROP DOWN LIST
+        spCategoria = (Spinner) findViewById(R.id.spCategoria);
+        List list = new ArrayList();
+        list.add("-Vacio-");
+        list.add("Bombachas");
+        list.add("Buzos");
+        list.add("Boxer");
+        list.add("Corpiños");
+        list.add("Conjuntos");
+        list.add("Mallas");
+        list.add("Medias");
+        list.add("Moda");
+        list.add("Pijamas");
+        list.add("Pantalones");
+        list.add("Remeras");
+        list.add("Ropa deportiva");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCategoria.setAdapter(arrayAdapter);
+        spCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            }   //muestra el elemento seleccionado
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //////////////////////////////////  SPINNER/DROP DOWN LIST
+        spMarca = (Spinner) findViewById(R.id.spMarca);
+        List list2 = new ArrayList();
+        list2.add("-Vacio-");
+        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
+        SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
+        //bdPaoPrendas.onUpgrade(db,1,1);
+        Cursor c = db.rawQuery("SELECT * FROM categoriasArt ORDER BY categoria asc", null);
+        if (c.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            do {
+                String marca = c.getString(1);
+                list2.add(marca);
+            } while(c.moveToNext());
+        }
+        c.close();
+        ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list2);
+        arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spMarca.setAdapter(arrayAdapter2);
+        ///////////////////////////////
+        List list3 = new ArrayList();
+        list3.add("-Vacio-");
+        list3.add("Mayor Precio");
+        list3.add("Menor Precio");
+        ArrayAdapter arrayAdapter3 = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list3);
+        arrayAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spPrecio.setAdapter(arrayAdapter3);
+    }/*
+    public void asigSpinners(){
+        //////////////////////////////////  SPINNER/DROP DOWN LIST
         List list = new ArrayList();
         list.add("-Vacio-");
         list.add("Pantalones");
@@ -78,15 +137,9 @@ public class OpcArticulos extends AppCompatActivity implements View.OnClickListe
         arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spMarca.setAdapter(arrayAdapter2);
         //////////////////////////////////  SPINNER/DROP DOWN LIST
-        List list3 = new ArrayList();
-        list3.add("-Vacio-");
-        list3.add("Mayor Precio");
-        list3.add("Menor Precio");
-        ArrayAdapter arrayAdapter3 = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list3);
-        arrayAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spPrecio.setAdapter(arrayAdapter3);
-    }
 
+    }
+*/
     public String whereOand(boolean bandera) {
         String where = " where ";
         String and = " and ";
@@ -131,7 +184,7 @@ public class OpcArticulos extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        BD bdArticulos = new BD(this, "BDArticulos", null, 1);
+        BD bdArticulos = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdArticulos.getWritableDatabase();
         switch (v.getId()) {
             case R.id.btnFiltrar:

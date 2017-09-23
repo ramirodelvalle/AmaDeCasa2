@@ -45,7 +45,7 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar_usuario);
 
-        BD bdPaoPrendas = new BD(this, "BDPaoPrendas", null, 1);
+        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         asigObjXML();
         SharedPreferences preferences = getSharedPreferences("sesion", Context.MODE_PRIVATE);
@@ -187,7 +187,7 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        BD bdPaoPrendas = new BD(this, "BDPaoPrendas", null, 1);
+        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         switch (v.getId()) {
             case R.id.btnActualizarDatos:

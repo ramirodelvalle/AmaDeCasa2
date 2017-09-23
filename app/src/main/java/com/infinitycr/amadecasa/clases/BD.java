@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class BD extends SQLiteOpenHelper{
 
-    String SQL_CREAR_TABLA_ARTICULOS = "CREATE TABLE articulos (codArticulo TEXT PRIMARY KEY," +
+    String SQL_CREAR_TABLA_ARTICULOS = "CREATE TABLE articulos (codArt INTEGER PRIMARY KEY AUTOINCREMENT, codigo TEXT," +
                                        "nombre TEXT, categoria TEXT, descripcion TEXT, precio TEXT," +
                                        "colores TEXT, genero TEXT,marca TEXT)";
     String SQL_CREAR_TABLA_USUARIOS = "CREATE TABLE usuarios (mailUsuario TEXT PRIMARY KEY,nombre TEXT,passWord TEXT," +
@@ -24,6 +24,9 @@ public class BD extends SQLiteOpenHelper{
     String SQL_CREAR_TABLA_CATEGORIAS_ARTICULOS = "CREATE TABLE categoriasArt(" +
                                                   "codCategoria INTEGER PRIMARY KEY AUTOINCREMENT," +
                                                   "categoria TEXT)";
+    String SQL_CREAR_TABLA_MARCAS_ARTICULOS = "CREATE TABLE marcasArt(" +
+                                              "codMarca INTEGER PRIMARY KEY AUTOINCREMENT," +
+                                              "marca TEXT)";
     String SQL_CREAR_TABLA_COMPRAS_POR_USUARIOS = "CREATE TABLE comprasXusuario (";
 
     public BD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -51,6 +54,7 @@ public class BD extends SQLiteOpenHelper{
         db.execSQL(SQL_CREAR_TABLA_ARTICULOS);
         db.execSQL(SQL_CREAR_TABLA_USUARIOS);
         db.execSQL(SQL_CREAR_TABLA_CATEGORIAS_ARTICULOS);
+        db.execSQL(SQL_CREAR_TABLA_MARCAS_ARTICULOS);
     }
 
     public String actualizarTablaArt(){
@@ -63,5 +67,9 @@ public class BD extends SQLiteOpenHelper{
 
     public String actualizarTablaCategoriasArt(){
         return SQL_CREAR_TABLA_CATEGORIAS_ARTICULOS;
+    }
+
+    public String actualizarTablaMarcasArt(){
+        return SQL_CREAR_TABLA_MARCAS_ARTICULOS;
     }
 }

@@ -42,6 +42,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
     Spinner spCategoria;
     Button btnAgregarArticulo;
     Button btnLeerArticulo;
+    EditText etCodigo;
     EditText etNombrePrenda;
     EditText etDescripcionPrenda;
     EditText etPrecioPrenda;
@@ -79,6 +80,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         btnAgregarArticulo.setOnClickListener(this);
         btnLeerArticulo = (Button) findViewById(R.id.btnLeerArticulo);
         btnLeerArticulo.setOnClickListener(this);
+        etCodigo = (EditText) findViewById(R.id.etCodigo);
         etNombrePrenda = (EditText) findViewById(R.id.etNombrePrenda);
         etDescripcionPrenda = (EditText) findViewById(R.id.etDescripcionPrenda);
         etPrecioPrenda = (EditText) findViewById(R.id.etPrecioPrenda);
@@ -123,8 +125,8 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         List list2 = new ArrayList();
         BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
-        bdPaoPrendas.onUpgrade(db,1,1);
-        Cursor c = db.rawQuery("SELECT * FROM categoriasArt", null);
+        //bdPaoPrendas.onUpgrade(db,1,1);
+        Cursor c = db.rawQuery("SELECT * FROM categoriasArt ORDER BY categoria asc", null);
         if (c.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             do {
@@ -172,6 +174,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
     }
 
     public void funAgregarArticulo(SQLiteDatabase db){
+        articulo.setCodigo(etCodigo.getText().toString());
         articulo.setNombrePrenda(etNombrePrenda.getText().toString());
         articulo.setCategoria(spCategoria.getSelectedItem().toString());
         articulo.setDescripcion(etDescripcionPrenda.getText().toString());
@@ -180,8 +183,8 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         articulo.setMarca(spMarca.getSelectedItem().toString());
         if (radioButtonF.isChecked()) {articulo.setGenero("femenino");} else {articulo.setGenero("masculino");}
         try {
-            String consulta = "INSERT INTO articulos (codArticulo,nombre,categoria,descripcion,precio,colores,genero,marca)"+
-                    "VALUES('"+articulo.getCodArticulo()+"','"+articulo.getNombrePrenda()+"','"+articulo.getCategoria()+"','"+
+            String consulta = "INSERT INTO articulos (codigo,nombre,categoria,descripcion,precio,colores,genero,marca)"+
+                    "VALUES('"+articulo.getCodigo()+"','"+articulo.getNombrePrenda()+"','"+articulo.getCategoria()+"','"+
                     articulo.getDescripcion()+ "','"+articulo.getPrecio()+"','" +
                     articulo.getColores()+"','"+articulo.getGenero()+"','"+articulo.getMarca()+"')";
             //INSERTAR UN REGISTRO
@@ -195,7 +198,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         }
         //LEO EL ARTICULO RECIEN CREADO PARA TRAER EL NUMERO DEL ARTICULO Y CREAR SU IMAGEN EN MEMORIA CON ESE NUMERO
         Cursor c = db.rawQuery("SELECT * FROM articulos WHERE nombre = '"+
-                articulo.getNombrePrenda()+"'", null);
+                               articulo.getNombrePrenda()+"'", null);
         //Nos aseguramos de que existe al menos un registro
         int i = 0;
         int codArt = 0;
@@ -215,7 +218,6 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
             FileOutputStream outputStream = getApplicationContext().openFileOutput(
                     codArt+".png", Context.MODE_PRIVATE);
             outputStream.write(byteArray);
-            //articulo.setRutaImagen(outputStream.toString());
             outputStream.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -235,13 +237,13 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
     }
 
     public void cargarTabla(SQLiteDatabase db){
-        /*
+
         Articulo art[] = new Articulo[7];
         art[0] = new Articulo();
         art[0].setNombrePrenda("remera roja");
         art[0].setCategoria("Remeras");
         art[0].setDescripcion("grande");
-        art[0].setPrecio(23);
+        art[0].setPrecio("23");
         art[0].setColores("Rojo");
         art[0].setGenero("masculino");
         art[0].setMarca("Avon");
@@ -249,7 +251,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[1].setNombrePrenda("jean");
         art[1].setCategoria("Pantalones");
         art[1].setDescripcion("roto");
-        art[1].setPrecio(9);
+        art[1].setPrecio("9");
         art[1].setColores("Azul");
         art[1].setGenero("masculino");
         art[1].setMarca("DC");
@@ -257,7 +259,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[2].setNombrePrenda("tanga");
         art[2].setCategoria("Bombachas");
         art[2].setDescripcion("roja M");
-        art[2].setPrecio(12);
+        art[2].setPrecio("12");
         art[2].setColores("Rojo");
         art[2].setGenero("femenino");
         art[2].setMarca("Avon");
@@ -265,7 +267,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[3].setNombrePrenda("boxer");
         art[3].setCategoria("Boxer");
         art[3].setDescripcion("gris S");
-        art[3].setPrecio(23);
+        art[3].setPrecio("25");
         art[3].setColores("Negro");
         art[3].setGenero("masculino");
         art[3].setMarca("Nike");
@@ -273,7 +275,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[4].setNombrePrenda("buzo");
         art[4].setCategoria("Buzos");
         art[4].setDescripcion("abrigado");
-        art[4].setPrecio(6);
+        art[4].setPrecio("84");
         art[4].setColores("Rojo");
         art[4].setGenero("femenino");
         art[4].setMarca("DC");
@@ -281,7 +283,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[5].setNombrePrenda("corpiño");
         art[5].setCategoria("Corpiños");
         art[5].setDescripcion("negro M");
-        art[5].setPrecio(45);
+        art[5].setPrecio("78");
         art[5].setColores("Negro");
         art[5].setGenero("femenino");
         art[5].setMarca("DC");
@@ -289,10 +291,10 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[6].setNombrePrenda("corpiño 2");
         art[6].setCategoria("Corpiños");
         art[6].setDescripcion("rojo");
-        art[6].setPrecio(4);
+        art[6].setPrecio("65");
         art[6].setColores("Rojo");
         art[6].setGenero("femenino");
-        art[6].setMarca("Juana");
+        art[6].setMarca("");
         for (int i=0; i<7; i++) {
 
             try {
@@ -313,8 +315,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
     }
 
 
-    //VVVVVVVVVVVVVVVVVVVVV
-    //VVVVVVVVVVVVVVVVVVVVV
+
     @Override
     public void onClick (View v){
         BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
@@ -340,19 +341,19 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.btnLeerArticulo:
-                Cursor c = db.rawQuery("SELECT codArticulo,nombre,descripcion FROM articulos", null);
-                String codArticulo = "";
-                String descripcion = "";
+                Cursor c = db.rawQuery("SELECT * FROM articulos", null);
+                int codArticulo;
+                String codigo = "";
                 String nombre = "";
 
                 //Nos aseguramos de que existe al menos un registro
                 if (c.moveToFirst()) {
                     //Recorremos el cursor hasta que no haya más registros
                     do {
-                        codArticulo = c.getString(0);
-                        nombre = c.getString(1);
-                        descripcion = c.getString(2);
-                        Toast.makeText(this,"codArticulo: "+codArticulo+ " nombre: "+nombre+ " descripcion: "+descripcion,
+                        codArticulo = c.getInt(0);
+                        codigo = c.getString(1);
+                        nombre = c.getString(2);
+                        Toast.makeText(this,"codArticulo: "+codArticulo+ " codigo: "+codigo+ " nombre: "+nombre,
                                 Toast.LENGTH_SHORT).show();
                     } while(c.moveToNext());
                 }
@@ -363,7 +364,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.btnCargarTabla:
-                //cargarTabla(db);
+                cargarTabla(db);
                 break;
 
         }

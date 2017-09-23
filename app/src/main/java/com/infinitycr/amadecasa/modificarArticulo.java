@@ -32,6 +32,7 @@ import java.util.List;
 
 public class modificarArticulo extends AppCompatActivity implements View.OnClickListener{
 
+    EditText etCodigo;
     EditText etNombrePrenda;
     EditText etDescripcionPrenda;
     EditText etPrecioPrenda;
@@ -75,6 +76,7 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
         ivFotoPrenda = (ImageView) findViewById(R.id.ivFotoPrenda);
         btnTomarFoto = (Button) findViewById(R.id.btnTomarFoto);
         btnTomarFoto.setOnClickListener(this);
+        etCodigo = (EditText) findViewById(R.id.etCodigo);
         etNombrePrenda = (EditText) findViewById(R.id.etNombrePrenda);
         etDescripcionPrenda = (EditText) findViewById(R.id.etDescripcionPrenda);
         etPrecioPrenda = (EditText) findViewById(R.id.etPrecioPrenda);
@@ -112,11 +114,12 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
         if(bundle!=null){   // se fija si esta vacio para q no de error
             //COMPLETO LOS CAMPOS CON LOS DATOS DEL ARTICULO
             articulo = (Articulo) getIntent().getExtras().getSerializable("articuloDeLista");
+            etCodigo.setText(articulo.getCodigo(), TextView.BufferType.EDITABLE);
             etNombrePrenda.setText(articulo.getNombrePrenda(), TextView.BufferType.EDITABLE);
             cargarSpinner();
             etDescripcionPrenda.setText(articulo.getDescripcion(), TextView.BufferType.EDITABLE);
             etPrecioPrenda.setText(String.valueOf(articulo.getPrecio()), TextView.BufferType.EDITABLE);
-            //ivFotoPrenda.setImageBitmap(cargarFoto(articulo.getCodArticulo()));
+            ivFotoPrenda.setImageBitmap(cargarFoto(articulo.getCodArticulo()));
             llenarColores();
             if (articulo.getGenero().equals("femenino")) {
                 radioButtonF.setChecked(true);
@@ -229,6 +232,7 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
     }
 
     public void funActualizarArticulo(SQLiteDatabase db){
+        articulo.setCodigo(etCodigo.getText().toString());
         articulo.setNombrePrenda(etNombrePrenda.getText().toString());
         articulo.setCategoria(spCategoria.getSelectedItem().toString());
         articulo.setDescripcion(etDescripcionPrenda.getText().toString());
@@ -240,13 +244,14 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
         try {
             //ACTUALIZAR UN REGISTRO
             db.execSQL("UPDATE articulos SET " +
+                       "codigo='"+articulo.getCodigo()+"'," +
                        "nombre='"+articulo.getNombrePrenda()+"'," +
                        "categoria='"+articulo.getCategoria()+"'," +
                        "descripcion='"+articulo.getDescripcion()+"'," +
                        "precio='"+articulo.getPrecio()+"', "+
                        "colores='"+articulo.getColores()+"', "+
                        "genero='"+articulo.getGenero()+"' "+
-                       "WHERE codArticulo="+articulo.getCodArticulo());
+                       "WHERE codArt="+articulo.getCodArticulo());
         }
         catch (Exception e)
         {
@@ -280,7 +285,7 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        BD bdArticulos = new BD(this, "BDArticulos", null, 1);
+        BD bdArticulos = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdArticulos.getWritableDatabase();
         switch (v.getId()) {
             case R.id.btnTomarFoto:

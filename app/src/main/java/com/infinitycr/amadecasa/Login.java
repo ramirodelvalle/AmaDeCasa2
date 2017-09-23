@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        BD bdPaoPrendas = new BD(this, "BDPaoPrendas", null, 1);
+        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         asigObjXML();
         cargarUsuario(db);
@@ -57,7 +57,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         etMail.setText(preferences.getString("mail","no tenia datos cargados"));
         etPassword.setText(preferences.getString("pass","no tenia datos cargados"));
         if(!etMail.getText().toString().isEmpty()){
-            ingresar(db);
+            if(ingresar(db)){
+                Intent intent2 = new Intent(this, MainActivity.class);
+                startActivity(intent2);
+            }
         }
     }
 
@@ -70,7 +73,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         editor.apply();
     }
 
-    public void ingresar(SQLiteDatabase db){
+    public boolean ingresar(SQLiteDatabase db){
         Cursor c = db.rawQuery("SELECT * FROM usuarios", null);
         if (c.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
@@ -82,19 +85,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         pass.equals(etPassword.getText().toString())){
                     dejarSesionActiva(nombre);
                     c.close();
-                    Intent intent3 = new Intent(this, MainActivity.class);
-                    startActivity(intent3);
-                    return;
+                    return true;
                 }
             } while(c.moveToNext());
         }
         Toast.makeText(this,"Mail o contraseña erroneas",Toast.LENGTH_SHORT).show();
         c.close();
+        return false;
     }
 
     @Override
     public void onClick(View v) {
-        BD bdPaoPrendas = new BD(this, "BDPaoPrendas", null, 1);
+        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         switch (v.getId()) {
             case R.id.btnCrearCuenta:
@@ -106,7 +108,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent1);
                 break;
             case R.id.btnIniciar:
-                ingresar(db);
+                if(ingresar(db)){
+                    Intent intent3 = new Intent(this, MainActivity.class);
+                    startActivity(intent3);
+                }
                 break;
             case R.id.btnIrAMain:
                 Intent intent2 = new Intent(this, MainActivity.class);

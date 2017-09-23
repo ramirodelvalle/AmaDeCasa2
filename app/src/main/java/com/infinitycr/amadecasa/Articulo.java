@@ -17,7 +17,8 @@ import java.io.Serializable;
 public class Articulo implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    private String CodArticulo;
+    private int CodArticulo;
+    private String Codigo;
     private String NombrePrenda;
     private String Descripcion;
     private String Colores;
@@ -30,10 +31,11 @@ public class Articulo implements Serializable{
 
     public Articulo(){}
 
-    public Articulo(String codArticulo,String nombrePrenda,String descripcion,String colores,
+    public Articulo(int codArticulo,String codigo,String nombrePrenda,String descripcion,String colores,
                     String categoria,String precio,FileInputStream rutaImagen,String genero,String marca){
         super();
         this.CodArticulo = codArticulo;
+        this.Codigo = codigo;
         this.NombrePrenda = nombrePrenda;
         this.Descripcion = descripcion;
         this.Colores = colores;
@@ -44,8 +46,11 @@ public class Articulo implements Serializable{
         this.Marca = marca;
     }
 
-    void setCodArticulo(String codArticulo){
+    void setCodArticulo(int codArticulo){
         CodArticulo = codArticulo;
+    }
+    void setCodigo(String codigo){
+        Codigo = codigo;
     }
     void setNombrePrenda(String nombrePrenda){
         NombrePrenda = nombrePrenda;
@@ -71,8 +76,11 @@ public class Articulo implements Serializable{
         imagen = bmp;
     }
 
-    String getCodArticulo(){
+    int getCodArticulo(){
         return CodArticulo;
+    }
+    String getCodigo(){
+        return Codigo;
     }
     String getNombrePrenda(){
         return NombrePrenda;

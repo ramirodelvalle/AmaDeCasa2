@@ -44,7 +44,7 @@ public class VistaDeUnArticulo extends AppCompatActivity implements View.OnClick
             //TRAIGO EL OBJETO Q PASE DESDE LA OTRA ACTIVITY
             articulo = (Articulo) getIntent().getExtras().getSerializable("articuloDeLista");
             //etNombreArticulo.setText(articulo.getNombrePrenda());
-            tvCodArticulo.setText(String.valueOf(articulo.getCodArticulo()));
+            tvCodArticulo.setText(String.valueOf(articulo.getCodigo()));
             tvNombrePrenda.setText(articulo.getNombrePrenda());
             tvCategoria.setText(articulo.getCategoria());
             tvPrecioPrenda.setText(String.valueOf(articulo.getPrecio()));
