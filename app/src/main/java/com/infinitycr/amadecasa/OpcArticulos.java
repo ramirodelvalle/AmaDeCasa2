@@ -112,34 +112,8 @@ public class OpcArticulos extends AppCompatActivity implements View.OnClickListe
         ArrayAdapter arrayAdapter3 = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list3);
         arrayAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spPrecio.setAdapter(arrayAdapter3);
-    }/*
-    public void asigSpinners(){
-        //////////////////////////////////  SPINNER/DROP DOWN LIST
-        List list = new ArrayList();
-        list.add("-Vacio-");
-        list.add("Pantalones");
-        list.add("Remeras");
-        list.add("Buzos");
-        list.add("Boxer");
-        list.add("Bombachas");
-        list.add("Corpiños");
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spCategoria.setAdapter(arrayAdapter);
-        //////////////////////////////////  SPINNER/DROP DOWN LIST
-        List list2 = new ArrayList();
-        list2.add("-Vacio-");
-        list2.add("Avon");
-        list2.add("Juana");
-        list2.add("DC");
-        list2.add("Nike");
-        ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list2);
-        arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spMarca.setAdapter(arrayAdapter2);
-        //////////////////////////////////  SPINNER/DROP DOWN LIST
-
     }
-*/
+
     public String whereOand(boolean bandera) {
         String where = " where ";
         String and = " and ";
@@ -153,19 +127,24 @@ public class OpcArticulos extends AppCompatActivity implements View.OnClickListe
         String consultaSQL = "select * from articulos";
         boolean where = false;
         String sinSeleccion = "-Vacio-";
-        if (spCategoria.getSelectedItem().toString() != sinSeleccion)
+        if (!spCategoria.getSelectedItem().toString().equals(sinSeleccion))
         {
             consultaSQL  += whereOand(where);
             consultaSQL  += "categoria='" + spCategoria.getSelectedItem().toString() + "' ";
             where = true;
         }
-        if (spMarca.getSelectedItem().toString() != sinSeleccion)
+        if (!spMarca.getSelectedItem().toString().equals(sinSeleccion))
         {
             consultaSQL  += whereOand(where);
             consultaSQL  += "marca='" + spMarca.getSelectedItem().toString() + "' ";
             where = true;
         }
-        if (spPrecio.getSelectedItem().toString() != sinSeleccion)
+        String genero;
+        if (radioButtonF.isChecked()) {genero="femenino";} else {genero="masculino";}
+        consultaSQL  += whereOand(where);
+        consultaSQL  += "genero='" + genero + "' ";
+        where = true;
+        if (!spPrecio.getSelectedItem().toString().equals(sinSeleccion))
         {
             if (spPrecio.getSelectedItem().toString().contains("Mayor Precio"))
             consultaSQL  += " ORDER BY precio desc ";

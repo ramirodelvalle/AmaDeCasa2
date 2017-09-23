@@ -164,7 +164,8 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
                        "passWord='" + etPassWord.getText() + "'," +
                        "direccion='"+ etDireccion.getText() +"'," +
                        "localidad='"+ etLocalidad.getText() + "'," +
-                       "cp='"+ etCp.getText() +"',genero='"+genero+"'," +
+                       "cp='"+ etCp.getText() +"'," +
+                       "genero='"+genero+"'," +
                        "coloresFavoritos='"+ getColores() +"' " +
                        "WHERE mailUsuario='"+tvMail.getText()+"'";
             db.execSQL(consulta);
@@ -205,6 +206,8 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
                 if(correcto){
                     try {
                         actualizarUsuario(db);
+                        Intent intent = new Intent(this,MainActivity.class);
+                        startActivity(intent);
                     } catch (Exception e) {e.printStackTrace();}
                 }
                 break;

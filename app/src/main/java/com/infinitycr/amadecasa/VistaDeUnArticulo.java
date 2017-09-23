@@ -47,7 +47,7 @@ public class VistaDeUnArticulo extends AppCompatActivity implements View.OnClick
             tvCodArticulo.setText(String.valueOf(articulo.getCodigo()));
             tvNombrePrenda.setText(articulo.getNombrePrenda());
             tvCategoria.setText(articulo.getCategoria());
-            tvPrecioPrenda.setText(String.valueOf(articulo.getPrecio()));
+            tvPrecioPrenda.setText(String.valueOf("$ "+articulo.getPrecio()));
             tvDescripcionPrenda.setText(articulo.getDescripcion());
             tvColores.setText(articulo.getColores());
             tvGenero.setText(articulo.getGenero());

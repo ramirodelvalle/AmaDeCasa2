@@ -237,7 +237,6 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
     }
 
     public void cargarTabla(SQLiteDatabase db){
-
         Articulo art[] = new Articulo[7];
         art[0] = new Articulo();
         art[0].setNombrePrenda("remera roja");
@@ -246,7 +245,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[0].setPrecio("23");
         art[0].setColores("Rojo");
         art[0].setGenero("masculino");
-        art[0].setMarca("Avon");
+        art[0].setMarca("ACROBATA");
         art[1] = new Articulo();
         art[1].setNombrePrenda("jean");
         art[1].setCategoria("Pantalones");
@@ -254,7 +253,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[1].setPrecio("9");
         art[1].setColores("Azul");
         art[1].setGenero("masculino");
-        art[1].setMarca("DC");
+        art[1].setMarca("AILIN");
         art[2] = new Articulo();
         art[2].setNombrePrenda("tanga");
         art[2].setCategoria("Bombachas");
@@ -262,7 +261,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[2].setPrecio("12");
         art[2].setColores("Rojo");
         art[2].setGenero("femenino");
-        art[2].setMarca("Avon");
+        art[2].setMarca("DIME QUIEN ERES");
         art[3] = new Articulo();
         art[3].setNombrePrenda("boxer");
         art[3].setCategoria("Boxer");
@@ -270,7 +269,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[3].setPrecio("25");
         art[3].setColores("Negro");
         art[3].setGenero("masculino");
-        art[3].setMarca("Nike");
+        art[3].setMarca("DIN DAN");
         art[4] = new Articulo();
         art[4].setNombrePrenda("buzo");
         art[4].setCategoria("Buzos");
@@ -278,7 +277,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[4].setPrecio("84");
         art[4].setColores("Rojo");
         art[4].setGenero("femenino");
-        art[4].setMarca("DC");
+        art[4].setMarca("DUFOUR");
         art[5] = new Articulo();
         art[5].setNombrePrenda("corpiño");
         art[5].setCategoria("Corpiños");
@@ -286,7 +285,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[5].setPrecio("78");
         art[5].setColores("Negro");
         art[5].setGenero("femenino");
-        art[5].setMarca("DC");
+        art[5].setMarca("JE TAIME");
         art[6] = new Articulo();
         art[6].setNombrePrenda("corpiño 2");
         art[6].setCategoria("Corpiños");
@@ -294,12 +293,11 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         art[6].setPrecio("65");
         art[6].setColores("Rojo");
         art[6].setGenero("femenino");
-        art[6].setMarca("");
+        art[6].setMarca("ACROBATA");
         for (int i=0; i<7; i++) {
-
             try {
-                String consulta = "INSERT INTO articulos (nombre,categoria,descripcion,precio,colores,genero,marca)"+
-                        "VALUES('"+art[i].getNombrePrenda()+"','"+art[i].getCategoria()+"','"+
+                String consulta = "INSERT INTO articulos (codigo,nombre,categoria,descripcion,precio,colores,genero,marca)"+
+                        "VALUES('"+(i+100)+"','"+art[i].getNombrePrenda()+"','"+art[i].getCategoria()+"','"+
                         art[i].getDescripcion()+ "','"+art[i].getPrecio()+"','" +
                         art[i].getColores()+"','"+art[i].getGenero()+"','"+art[i].getMarca()+"')";
                 //INSERTAR UN REGISTRO
@@ -311,7 +309,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
             }
         }
         db.close();
-        */
+
     }
 
 
