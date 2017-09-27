@@ -1,10 +1,12 @@
 package com.infinitycr.amadecasa;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -54,8 +56,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void cargarUsuario(SQLiteDatabase db){
         SharedPreferences preferences = getSharedPreferences("sesion",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        etMail.setText(preferences.getString("mail","no tenia datos cargados"));
-        etPassword.setText(preferences.getString("pass","no tenia datos cargados"));
+        etMail.setText(preferences.getString("mail",""));
+        etPassword.setText(preferences.getString("pass",""));
         if(!etMail.getText().toString().isEmpty()){
             if(ingresar(db)){
                 Intent intent2 = new Intent(this, MainActivity.class);
@@ -95,6 +97,29 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
+    public void onBackPressed (){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder.setMessage("Desea salir?")
+                .setCancelable(false)
+                .setPositiveButton("si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();   //CIERRA LA APP
+                        //lo que quieras hacer cuando se da click en si
+                        System.exit(0);
+                    }
+                })
+                .setNegativeButton("no", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //lo que quieras hacer cuando se da click en no
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
     public void onClick(View v) {
         BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
@@ -117,7 +142,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 Intent intent2 = new Intent(this, MainActivity.class);
                 startActivity(intent2);
                 break;
-
 
         }
 

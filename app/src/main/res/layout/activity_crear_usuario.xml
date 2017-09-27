@@ -8,14 +8,19 @@
     tools:context="com.infinitycr.amadecasa.CrearUsuario">
 
     <ScrollView
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
@@ -172,7 +177,7 @@
                 android:layout_below="@+id/textView6"
                 android:ems="10"
                 android:hint="ej: 1621"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textView9"

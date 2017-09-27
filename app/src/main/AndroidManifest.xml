@@ -21,7 +21,6 @@
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Login"
             android:configChanges="orientation|keyboardHidden"
@@ -33,27 +32,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".SubirArticulo"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.SUBIRARTICULO" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".VerArticulos"
             android:configChanges="orientation|keyboardHidden"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".VistaDeUnArticulo"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".modificarArticulo"
             android:configChanges="orientation|keyboardHidden"
@@ -71,7 +63,8 @@
         <activity android:name=".TalleCoripinio" />
         <activity android:name=".RecuperaPassword" />
         <activity android:name=".Ventas" />
-        <activity android:name=".ModificarUsuario"></activity>
+        <activity android:name=".ModificarUsuario" />
+        <activity android:name=".Principal"></activity>
     </application>
 
 </manifest>

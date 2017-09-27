@@ -1,11 +1,13 @@
 package com.infinitycr.amadecasa;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnToast;
     Button btnCerrarSesion;
     TextView tvUsuario;
+    Context context = this;
 
     ManejadorBaseDeDatos manejadorBD;
 
@@ -63,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         cargarUsuario();
 
+
+        /*
         manejadorBD = ManejadorBaseDeDatos.instance();
         Cursor cursor = manejadorBD.select("SELECT * FROM articulos");
         String cod;
@@ -73,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         BD bdArticulos = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdArticulos.getWritableDatabase();
-/*
+
         for (int i=0; i<500; i++) {
             marcas[i] = new String();
             marcas[i] = "";
@@ -100,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
 
-        }*/
-        cursor.close();
+        }
+        cursor.close();*/
     }
 
     public void funAgregarCat(SQLiteDatabase db,String marca){
@@ -135,22 +140,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()){
             case R.id.btnSubirArticulo:
-                Intent intent = new Intent(this,SubirArticulo.class);   //busca la pantalla q va a abrir
+                intent = new Intent(this,SubirArticulo.class);   //busca la pantalla q va a abrir
                 startActivity(intent);  //ABRE LA ACTIVITY
                 break;
             case R.id.btnVerArticulos:
-                Intent intent2 = new Intent(this,VerArticulos.class);   //busca la pantalla q va a abrir
-                startActivity(intent2);  //ABRE LA ACTIVITY
+                intent = new Intent(this,VerArticulos.class);   //busca la pantalla q va a abrir
+                startActivity(intent);  //ABRE LA ACTIVITY
                 break;
             case R.id.btnCrearCuenta:
-                Intent intent3 = new Intent(this,CrearUsuario.class);   //busca la pantalla q va a abrir
-                startActivity(intent3);  //ABRE LA ACTIVITY
+                intent = new Intent(this,CrearUsuario.class);   //busca la pantalla q va a abrir
+                startActivity(intent);  //ABRE LA ACTIVITY
                 break;
             case R.id.btnTalles:
-                Intent intent4 = new Intent(this,VistaDeTalles.class);   //busca la pantalla q va a abrir
-                startActivity(intent4);  //ABRE LA ACTIVITY
+                intent = new Intent(this,VistaDeTalles.class);   //busca la pantalla q va a abrir
+                startActivity(intent);  //ABRE LA ACTIVITY
                 break;
             case R.id.btnToast:
 
@@ -159,8 +165,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 cerrarSesion();
                 break;
             case R.id.btnActualizarUsuario:
-                Intent intent5 = new Intent(this,ModificarUsuario.class);   //busca la pantalla q va a abrir
-                startActivity(intent5);  //ABRE LA ACTIVITY
+                intent = new Intent(this,ModificarUsuario.class);   //busca la pantalla q va a abrir
+                startActivity(intent);  //ABRE LA ACTIVITY
                 break;
         }
     }

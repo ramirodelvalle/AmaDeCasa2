@@ -273,14 +273,13 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
         }
     }
 
-    public boolean validarEditText(EditText et){
-        if(et.length()==0){
+    public int validarEditText(EditText et,int cnt){
+        if(et.length()!=0){
             et.setError("Complete este campo");
-            return false;
+            cnt++;
+            return cnt;
         }
-        else{
-            return true;
-        }
+        else {return cnt;}
     }
 
     @Override
@@ -293,11 +292,12 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
                 startActivityForResult(intentImagen, 0);
                 break;
             case R.id.btnActualizarArt:
-                boolean correcto = true;
-                correcto = validarEditText(etNombrePrenda);
-                correcto = validarEditText(etDescripcionPrenda);
-                correcto = validarEditText(etPrecioPrenda);
-                if(correcto){
+                int cnt=0;
+                //cnt = validarEditText(etNombrePrenda,cnt);
+                cnt = validarEditText(etNombrePrenda,cnt);
+                cnt = validarEditText(etDescripcionPrenda,cnt);
+                cnt = validarEditText(etPrecioPrenda,cnt);
+                if(cnt == 3){
                     try {
                         funActualizarArticulo(db);
                         Intent irMenuPrincipal = new Intent(this,MainActivity.class);
