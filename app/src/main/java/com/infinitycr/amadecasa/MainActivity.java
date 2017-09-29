@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnVerArticulos;
     Button btnCrearUsuario;
     Button btnActualizarUsuario;
-    Button btnTalles;
-    Button btnToast;
     Button btnCerrarSesion;
     TextView tvUsuario;
     Context context = this;
@@ -46,16 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnCrearUsuario = (Button) findViewById(R.id.btnCrearCuenta);
-        btnCrearUsuario.setOnClickListener(this);
         btnSubirArticulo = (Button) findViewById(R.id.btnSubirArticulo);
         btnSubirArticulo.setOnClickListener(this);
         btnVerArticulos = (Button) findViewById(R.id.btnVerArticulos);
         btnVerArticulos.setOnClickListener(this);
-        btnTalles = (Button) findViewById(R.id.btnTalles);
-        btnTalles.setOnClickListener(this);
-        btnToast = (Button) findViewById(R.id.btnToast);
-        btnToast.setOnClickListener(this);
         btnCerrarSesion = (Button) findViewById(R.id.btnCerrarSesion);
         btnCerrarSesion.setOnClickListener(this);
         tvUsuario = (TextView) findViewById(R.id.tvUsuario);
@@ -149,17 +141,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnVerArticulos:
                 intent = new Intent(this,VerArticulos.class);   //busca la pantalla q va a abrir
                 startActivity(intent);  //ABRE LA ACTIVITY
-                break;
-            case R.id.btnCrearCuenta:
-                intent = new Intent(this,CrearUsuario.class);   //busca la pantalla q va a abrir
-                startActivity(intent);  //ABRE LA ACTIVITY
-                break;
-            case R.id.btnTalles:
-                intent = new Intent(this,VistaDeTalles.class);   //busca la pantalla q va a abrir
-                startActivity(intent);  //ABRE LA ACTIVITY
-                break;
-            case R.id.btnToast:
-
                 break;
             case R.id.btnCerrarSesion:
                 cerrarSesion();

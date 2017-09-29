@@ -68,24 +68,6 @@
                 android:text="VER ARTICULOS" />
 
             <Button
-                android:id="@+id/btnCrearCuenta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Crear Cuenta" />
-
-            <Button
-                android:id="@+id/btnTalles"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Talles" />
-
-            <Button
-                android:id="@+id/btnToast"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="toast" />
-
-            <Button
                 android:id="@+id/btnActualizarUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
