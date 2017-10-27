@@ -20,7 +20,7 @@ public class BD extends SQLiteOpenHelper{
                                        "nombre TEXT, categoria TEXT, descripcion TEXT, precio TEXT," +
                                        "colores TEXT, genero TEXT,marca TEXT)";
     String SQL_CREAR_TABLA_USUARIOS = "CREATE TABLE usuarios (mailUsuario TEXT PRIMARY KEY,nombre TEXT,passWord TEXT," +
-                                      "direccion TEXT, localidad TEXT, cp INT, genero TEXT, coloresFavoritos TEXT) ";
+                                      "rangoEdad TEXT, numeroTelefono TEXT, direccion TEXT, localidad TEXT, cp INT, genero TEXT, coloresFavoritos TEXT) ";
     String SQL_CREAR_TABLA_CATEGORIAS_ARTICULOS = "CREATE TABLE categoriasArt(" +
                                                   "codCategoria INTEGER PRIMARY KEY AUTOINCREMENT," +
                                                   "categoria TEXT)";

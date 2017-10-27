@@ -30,6 +30,7 @@ public class VistaDeUnArticulo extends AppCompatActivity implements View.OnClick
     TextView tvGenero;
     TextView tvMarcaPrenda;
     Button btnModificarArt;
+    Button btnMiTalle;
 
     Articulo articulo;
     @Override
@@ -80,15 +81,22 @@ public class VistaDeUnArticulo extends AppCompatActivity implements View.OnClick
         tvMarcaPrenda = (TextView) findViewById(R.id.tvMarcaPrenda);
         btnModificarArt = (Button) findViewById(R.id.btnModificarArt);
         btnModificarArt.setOnClickListener(this);
+        btnMiTalle = (Button) findViewById(R.id.btnMiTalle);
+        btnMiTalle.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()) {
             case R.id.btnModificarArt:
-                Intent intent = new Intent(this,modificarArticulo.class); //ABRE LA ACTIVIDAD
+                intent = new Intent(this,modificarArticulo.class); //ABRE LA ACTIVIDAD
                 intent.putExtra("articuloDeLista",articulo);    //pasa el dato como una cookie
+                startActivity(intent);
+                break;
+            case R.id.btnMiTalle:
+                intent = new Intent(this,TalleCoripinio.class); //ABRE LA ACTIVIDAD
                 startActivity(intent);
                 break;
         }

@@ -8,17 +8,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infinitycr.amadecasa.clases.BD;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModificarUsuario extends AppCompatActivity implements View.OnClickListener {
-    Button btnActualizarDatos;
+    Button btnActualizarUsuario;
     Button btnBorrarTabla;
     TextView tvMail;
     EditText etNombre;
@@ -26,6 +31,7 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
     EditText etPassWord2;
     EditText etDireccion;
     EditText etLocalidad;
+    EditText etNumeroTelefono;
     EditText etCp;
     RadioButton radioButtonM;
     RadioButton radioButtonF;
@@ -38,6 +44,7 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
     CheckBox chkNegro;
     CheckBox chkBlanco;
     CheckBox chkVioleta;
+    Spinner spEdad;
     String mailUsuario;
 
     @Override
@@ -48,27 +55,41 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
         BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         asigObjXML();
+        asigSpinners();
         SharedPreferences preferences = getSharedPreferences("sesion", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         mailUsuario = (preferences.getString("mail","no tenia datos cargados"));
-        llenarDatos(db);
+        llenarDatos(db,mailUsuario);
 
     }
 
     public void asigObjXML() {
-        btnActualizarDatos = (Button) findViewById(R.id.btnActualizarDatos);
-        btnActualizarDatos.setOnClickListener(this);
+        btnActualizarUsuario = (Button) findViewById(R.id.btnActualizarUsuario);
+        btnActualizarUsuario.setOnClickListener(this);
         btnBorrarTabla = (Button) findViewById(R.id.btnBorrarTabla);
         btnBorrarTabla.setOnClickListener(this);
         tvMail = (TextView) findViewById(R.id.tvMail);
         etNombre = (EditText) findViewById(R.id.etNombre);
         etPassWord = (EditText) findViewById(R.id.etPassword);
         etPassWord2 = (EditText) findViewById(R.id.etPassword2);
+        spEdad = (Spinner) findViewById(R.id.spEdad);
+        etNumeroTelefono = (EditText) findViewById(R.id.etNumeroTelefono);
         etDireccion = (EditText) findViewById(R.id.etDireccion);
         etLocalidad = (EditText) findViewById(R.id.etLocalidad);
         etCp = (EditText) findViewById(R.id.etCp);
         radioButtonM = (RadioButton) findViewById(R.id.radioButtonM);
         radioButtonF = (RadioButton) findViewById(R.id.radioButtonF);
+    }
+
+    public void asigSpinners() {
+        spEdad = (Spinner) findViewById(R.id.spEdad);
+        List list = new ArrayList();
+        list.add("De 15 a 25 años");
+        list.add("De 25 a 45 años");
+        list.add("De 45 en adelante");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spEdad.setAdapter(arrayAdapter);
     }
 
     //TRAIGO LOS COLORES QUE TENIA SELECCIONADOS
@@ -133,49 +154,79 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
         return colores;
     }
 
-    public void llenarDatos(SQLiteDatabase db) {
-        Cursor c = db.rawQuery("SELECT * FROM usuarios WHERE mailUsuario='"+mailUsuario+"'", null);
+    public int cargarSpinner(String rangoEdad){
+        for (int i=0; i<3; i++) {
+            if(rangoEdad.equals(spEdad.getItemAtPosition(i)) ){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void llenarDatos(SQLiteDatabase db,String mail) {
+        String genero = "";
+        String consulta = "";
+        Cursor c = db.rawQuery("SELECT * FROM usuarios", null);
         if (c.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             do {
-                tvMail.setText(c.getString(0));
-                etNombre.setText(c.getString(1));
-                etPassWord.setText(c.getString(2));
-                etPassWord2.setText(c.getString(2));
-                etDireccion.setText(c.getString(3));
-                etLocalidad.setText(c.getString(4));
-                etCp.setText(c.getString(5));
-                if (c.getString(6).contains("femenino")) {radioButtonF.setChecked(true);}
-                else {radioButtonM.setChecked(true);}
-                llenarColores(c.getString(7));
-                c.close();
+                int pos = 0;
+                if(!mail.equals(c.getString(pos))){
+                    tvMail.setText(mail);
+                    /*
+                    consulta = "UPDATE usuarios SET " +
+                            "nombre='"+etNombre.getText()+"'," +
+                            "passWord='" + etPassWord.getText() + "'," +
+                            "direccion='"+ etDireccion.getText() +"'," +
+                            "localidad='"+ etLocalidad.getText() + "'," +
+                            "cp='"+ etCp.getText() +"'," +
+                            "genero='"+genero+"'," +
+                            "coloresFavoritos='"+ getColores() +"' " +
+                            "WHERE mailUsuario='"+tvMail.getText()+"'";
+                    db.execSQL(consulta);
+                    */
+                    String n = c.getString(1);
+                    etNombre.setText(c.getString(++pos));
+                    etPassWord.setText(c.getString(++pos));
+                    etPassWord2.setText(c.getString(pos));
+                    spEdad.setSelection(cargarSpinner(c.getString(++pos)));
+                    etNumeroTelefono.setText(c.getString(++pos));
+                    etDireccion.setText(c.getString(++pos));
+                    etLocalidad.setText(c.getString(++pos));
+                    etCp.setText(c.getString(++pos));
+                    if (c.getString(++pos).contains("femenino")) {radioButtonF.setChecked(true);}
+                    else {radioButtonM.setChecked(true);}
+                    llenarColores(c.getString(++pos));
+
+
+                }
             } while (c.moveToNext());
             c.close();
         }
     }
 
     public void actualizarUsuario(SQLiteDatabase db){
-        String genero = "";
-        String consulta = "";
-        if (radioButtonF.isChecked()) {genero="femenino";} else {genero="masculino";}
+        String genero;
+        String consulta;
+        //if (radioButtonF.isChecked()) {genero="femenino";} else {genero="masculino";}
         try {
-            //Actualizar un registro
-            consulta = "UPDATE usuarios SET nombre='"+etNombre.getText()+"'," +
-                       "passWord='" + etPassWord.getText() + "'," +
-                       "direccion='"+ etDireccion.getText() +"'," +
-                       "localidad='"+ etLocalidad.getText() + "'," +
-                       "cp='"+ etCp.getText() +"'," +
-                       "genero='"+genero+"'," +
-                       "coloresFavoritos='"+ getColores() +"' " +
-                       "WHERE mailUsuario='"+tvMail.getText()+"'";
-            db.execSQL(consulta);
+             //Actualizar un registro
+             db.execSQL("UPDATE usuarios SET nombre='hhhh' WHERE mailUsuario='q'");
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+        db.close();
     }
-
+    /* "passWord='" + etPassWord.getText() + "'," +
+                           "rangoEdad='" + spEdad.getSelectedItem().toString() +"',"+
+                           "numeroTelefono='" + etNumeroTelefono.getText() + "',"+
+                           "direccion='"+ etDireccion.getText() +"'," +
+                           "localidad='"+ etLocalidad.getText() + "'," +
+                           "cp='"+ etCp.getText() +"'," +
+                           "genero='"+genero+"'," +
+                           "coloresFavoritos='"+ getColores() +"' " +*/
     public boolean validarEditText(EditText et){
         if(et.length()==0){
             et.setError("Complete este campo");
@@ -191,14 +242,14 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
         BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         switch (v.getId()) {
-            case R.id.btnActualizarDatos:
+            case R.id.btnActualizarUsuario:
                 boolean correcto = true;
                 correcto = validarEditText(etNombre);
                 correcto = validarEditText(etPassWord);
                 correcto = validarEditText(etPassWord2);
                 correcto = validarEditText(etDireccion);
                 correcto = validarEditText(etLocalidad);
-                correcto = validarEditText(etCp);
+                //correcto = validarEditText(etCp);
                 String con1 = etPassWord.getText().toString();
                 String con2 = etPassWord2.getText().toString();
                 if(!con1.contains(con2)){

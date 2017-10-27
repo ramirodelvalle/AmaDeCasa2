@@ -208,6 +208,12 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/btnMiTalle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="cual es mi talle?" />
+
+            <Button
                 android:id="@+id/btnModificarArt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

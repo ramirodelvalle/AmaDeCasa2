@@ -83,11 +83,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 String mail = c.getString(0);
                 String nombre = c.getString(1);
                 String pass = c.getString(2);
-                if(mail.equals(etMail.getText().toString()) &&
-                        pass.equals(etPassword.getText().toString())){
+                //ACA NOSE Q PASAA
+                if(!mail.equals(etMail.getText().toString()) ){
                     dejarSesionActiva(nombre);
-                    c.close();
-                    return true;
+                    if(pass.equals(etPassword.getText().toString()) ){
+                        c.close();
+                        return true;
+                    }
                 }
             } while(c.moveToNext());
         }

@@ -1,16 +1,23 @@
 package com.infinitycr.amadecasa;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 
 import com.infinitycr.amadecasa.clases.BD;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CrearUsuario extends AppCompatActivity implements View.OnClickListener{
     Button btnCrearUsuario;
@@ -21,6 +28,7 @@ public class CrearUsuario extends AppCompatActivity implements View.OnClickListe
     EditText etPassWord2;
     EditText etDireccion;
     EditText etLocalidad;
+    EditText etNumeroTelefono;
     EditText etCp;
     RadioButton radioButtonM;
     RadioButton radioButtonF;
@@ -33,6 +41,7 @@ public class CrearUsuario extends AppCompatActivity implements View.OnClickListe
     CheckBox chkNegro;
     CheckBox chkBlanco;
     CheckBox chkVioleta;
+    Spinner spEdad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,7 @@ public class CrearUsuario extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_crear_usuario);
 
         asigObjXML();
+        asigSpinners();
         radioButtonF.setChecked(true);
         //ABRIMOS LA BD 'BDAlumnos' en modo escritura / sino la crea
         //BDAlumnos alumnos = new BDAlumnos(null);
@@ -68,11 +78,23 @@ public class CrearUsuario extends AppCompatActivity implements View.OnClickListe
         etNombre = (EditText) findViewById(R.id.etNombre);
         etPassWord = (EditText) findViewById(R.id.etPassword);
         etPassWord2 = (EditText) findViewById(R.id.etPassword2);
+        etNumeroTelefono = (EditText) findViewById(R.id.etNumeroTelefono);
         etDireccion = (EditText) findViewById(R.id.etDireccion);
         etLocalidad = (EditText) findViewById(R.id.etLocalidad);
         etCp = (EditText) findViewById(R.id.etCp);
         radioButtonM = (RadioButton) findViewById(R.id.radioButtonM);
         radioButtonF = (RadioButton) findViewById(R.id.radioButtonF);
+    }
+
+    public void asigSpinners() {
+        spEdad = (Spinner) findViewById(R.id.spEdad);
+        List list = new ArrayList();
+        list.add("De 15 a 25 años");
+        list.add("De 25 a 45 años");
+        list.add("De 45 en adelante");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spEdad.setAdapter(arrayAdapter);
     }
 
     //TRAIGO LOS COLORES SELECCIONADOS
@@ -99,15 +121,17 @@ public class CrearUsuario extends AppCompatActivity implements View.OnClickListe
     public void crearUsuario(SQLiteDatabase db){
         String genero = "";
         String consulta = "";
+        String rangoEdad = spEdad.getSelectedItem().toString();
         if (radioButtonF.isChecked()) {genero="femenino";} else {genero="masculino";}
         try {
             //INSERTAR UN REGISTRO
-            consulta = "INSERT INTO usuarios (mailUsuario,nombre,passWord,direccion,localidad," +
-                       "cp,genero,coloresFavoritos) " +
+            consulta = "INSERT INTO usuarios (mailUsuario,nombre,passWord,rangoEdad,numeroTelefono," +
+                       "direccion,localidad,cp,genero,coloresFavoritos) " +
                        "VALUES('"+etMail.getText()+"','"+etNombre.getText()+"'," +
-                       "'"+ etPassWord.getText() + "','"+ etDireccion.getText() +"'," +
-                       "'"+ etLocalidad.getText() + "','"+ etCp.getText() +"'," +
-                       "'"+ genero +"','"+ getColores() +"')";
+                       "'"+ etPassWord.getText() + "','"+ rangoEdad +"'," +
+                       "'"+ etNumeroTelefono.getText()  + "','" + etDireccion.getText() + "'," +
+                       "'"+ etLocalidad.getText() +"','" + etCp.getText() + "'," +
+                       "'"+ genero + "','" + getColores() + "')";
             db.execSQL(consulta);
         }
         catch (Exception e)
@@ -145,10 +169,17 @@ public class CrearUsuario extends AppCompatActivity implements View.OnClickListe
                     etPassWord2.setError("Las contraseñas deben ser iguales");
                 }
                 if(correcto){
+                    boolean bien=false;
                     try {
                         crearUsuario(db);
+                        bien=true;
                     } catch (Exception e) {
                         e.printStackTrace();
+                        bien=false;
+                    }
+                    if(bien){
+                        Intent intent = new Intent(this,Login.class);
+                        startActivity(intent);
                     }
                 }
                 break;

@@ -60,7 +60,7 @@
             <ListView
                 android:id="@+id/ContenlistView"
                 android:layout_width="match_parent"
-                android:layout_height="347dp"
+                android:layout_height="459dp"
                 android:background="@android:color/black" />
 
             <Button
