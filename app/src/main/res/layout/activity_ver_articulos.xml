@@ -39,13 +39,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Hombre" />
+                    android:backgroundTint="@android:color/holo_blue_light"
+                    android:text="Hombre"
+                    android:textColorLink="@android:color/holo_blue_dark" />
 
                 <Button
                     android:id="@+id/btnFemenino"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/colorAccent"
+                    android:elevation="0dp"
                     android:text="Mujer" />
             </LinearLayout>
 
@@ -57,12 +61,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <ListView
-                android:id="@+id/ContenlistView"
-                android:layout_width="match_parent"
-                android:layout_height="459dp"
-                android:background="@android:color/black" />
-
             <Button
                 android:id="@+id/btnOpciones"
                 android:layout_width="match_parent"
@@ -72,6 +70,12 @@
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="0dp" />
+
+            <ListView
+                android:id="@+id/ContenlistView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/black" />
 
 
         </LinearLayout>

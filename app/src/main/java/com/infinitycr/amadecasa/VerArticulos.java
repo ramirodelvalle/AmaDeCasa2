@@ -171,6 +171,7 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);  //abre la pantalla
                 break;
             case R.id.btnFemenino:
+                //btnFemenino.setBackgroundTintList;
                 intent = new Intent(this,VerArticulos.class);   //busca la pantalla q va a abrir  //dar de alta en el manifest!
                 intent.putExtra("consultaSQL","SELECT * FROM articulos WHERE genero='femenino'");    //pasa el dato como una cookie
                 startActivity(intent);  //abre la pantalla

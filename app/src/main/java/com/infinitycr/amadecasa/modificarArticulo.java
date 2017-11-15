@@ -88,12 +88,18 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
 
     public void asigSpinner(){
         list = new ArrayList();
-        list.add("Pantalones");
-        list.add("Remeras");
+        list.add("Bombachas");
         list.add("Buzos");
         list.add("Boxer");
-        list.add("Bombachas");
         list.add("Corpiños");
+        list.add("Conjuntos");
+        list.add("Mallas");
+        list.add("Medias");
+        list.add("Moda");
+        list.add("Pijamas");
+        list.add("Pantalones");
+        list.add("Remeras");
+        list.add("Ropa deportiva");
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategoria.setAdapter(arrayAdapter);
@@ -170,15 +176,22 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
 
     public void cargarSpinner(){
         String cate[] = new String[6];
-        cate[0] = "Pantalones";
-        cate[1] = "Remeras";
-        cate[2] = "Buzos";
-        cate[3] = "Boxer";
-        cate[4] = "Bombachas";
-        cate[5] = "Corpiños";
-        for (int i=0; i<6; i++) {
-            if(articulo.getCategoria().equals(cate[i]) ){
-                spCategoria.setSelection(i);
+        int i=0;
+        cate[i]="Bombachas";
+        cate[i++]="Buzos";
+        cate[i++]="Boxer";
+        cate[i++]="Corpiños";
+        cate[i++]="Conjuntos";
+        cate[i++]="Mallas";
+        cate[i++]="Medias";
+        cate[i++]="Moda";
+        cate[i++]="Pijamas";
+        cate[i++]="Pantalones";
+        cate[i++]="Remeras";
+        cate[i++]="Ropa deportiva";
+        for (int x=0; x<12; x++) {
+            if(articulo.getCategoria().equals(cate[x]) ){
+                spCategoria.setSelection(x);
                 return;
             }
         }

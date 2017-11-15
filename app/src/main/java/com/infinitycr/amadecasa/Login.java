@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     public boolean ingresar(SQLiteDatabase db){
-        Cursor c = db.rawQuery("SELECT * FROM usuarios", null);
+        Cursor c = db.rawQuery("SELECT * FROM usuarios WHERE mailUsuario = '"+etMail.getText()+"'", null);
         if (c.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             do {
@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 String nombre = c.getString(1);
                 String pass = c.getString(2);
                 //ACA NOSE Q PASAA
-                if(!mail.equals(etMail.getText().toString()) ){
+                if(mail.equals(etMail.getText().toString()) ){
                     dejarSesionActiva(nombre);
                     if(pass.equals(etPassword.getText().toString()) ){
                         c.close();

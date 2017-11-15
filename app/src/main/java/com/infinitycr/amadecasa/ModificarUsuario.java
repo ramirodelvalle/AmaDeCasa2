@@ -60,7 +60,6 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
         SharedPreferences.Editor editor = preferences.edit();
         mailUsuario = (preferences.getString("mail","no tenia datos cargados"));
         llenarDatos(db,mailUsuario);
-
     }
 
     public void asigObjXML() {
@@ -166,13 +165,12 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
     public void llenarDatos(SQLiteDatabase db,String mail) {
         String genero = "";
         String consulta = "";
-        Cursor c = db.rawQuery("SELECT * FROM usuarios", null);
+        Cursor c = db.rawQuery("SELECT * FROM usuarios where mailUsuario ='"+mail+"'", null);
         if (c.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             do {
                 int pos = 0;
-                if(!mail.equals(c.getString(pos))){
-                    tvMail.setText(mail);
+                tvMail.setText(mail);
                     /*
                     consulta = "UPDATE usuarios SET " +
                             "nombre='"+etNombre.getText()+"'," +
@@ -185,48 +183,58 @@ public class ModificarUsuario extends AppCompatActivity implements View.OnClickL
                             "WHERE mailUsuario='"+tvMail.getText()+"'";
                     db.execSQL(consulta);
                     */
-                    String n = c.getString(1);
-                    etNombre.setText(c.getString(++pos));
-                    etPassWord.setText(c.getString(++pos));
-                    etPassWord2.setText(c.getString(pos));
-                    spEdad.setSelection(cargarSpinner(c.getString(++pos)));
-                    etNumeroTelefono.setText(c.getString(++pos));
-                    etDireccion.setText(c.getString(++pos));
-                    etLocalidad.setText(c.getString(++pos));
-                    etCp.setText(c.getString(++pos));
-                    if (c.getString(++pos).contains("femenino")) {radioButtonF.setChecked(true);}
-                    else {radioButtonM.setChecked(true);}
-                    llenarColores(c.getString(++pos));
-
-
-                }
+                String n = c.getString(1);
+                etNombre.setText(c.getString(++pos));
+                etPassWord.setText(c.getString(++pos));
+                etPassWord2.setText(c.getString(pos));
+                spEdad.setSelection(cargarSpinner(c.getString(++pos)));
+                etNumeroTelefono.setText(c.getString(++pos));
+                etDireccion.setText(c.getString(++pos));
+                etLocalidad.setText(c.getString(++pos));
+                etCp.setText(c.getString(++pos));
+                if (c.getString(++pos).contains("femenino")) {radioButtonF.setChecked(true);}
+                else {radioButtonM.setChecked(true);}
+                llenarColores(c.getString(++pos));
             } while (c.moveToNext());
             c.close();
         }
     }
 
+    public void dejarSesionActiva(){
+        SharedPreferences preferences = getSharedPreferences("sesion",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("pass",etPassWord.getText().toString());
+        editor.putString("nombre",etNombre.getText().toString());
+        editor.apply();
+    }
+
     public void actualizarUsuario(SQLiteDatabase db){
         String genero;
         String consulta;
-        //if (radioButtonF.isChecked()) {genero="femenino";} else {genero="masculino";}
+        if (radioButtonF.isChecked()) {genero="femenino";} else {genero="masculino";}
         try {
              //Actualizar un registro
-             db.execSQL("UPDATE usuarios SET nombre='hhhh' WHERE mailUsuario='q'");
+             db.execSQL("UPDATE usuarios SET " +
+                             "nombre='"+etNombre.getText()+"' WHERE mailUsuario='"+mailUsuario+"'"+
+                             "passWord='" + etPassWord.getText() + "'," +
+                             "rangoEdad='" + spEdad.getSelectedItem().toString() +"',"+
+                             "numeroTelefono='" + etNumeroTelefono.getText() + "',"+
+                             "direccion='"+ etDireccion.getText() +"'," +
+                             "localidad='"+ etLocalidad.getText() + "'," +
+                             "cp='"+ etCp.getText() +"'," +
+                             "genero='"+genero+"'," +
+                             "coloresFavoritos='"+ getColores() +"' "
+             );
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
         db.close();
+        dejarSesionActiva();
     }
-    /* "passWord='" + etPassWord.getText() + "'," +
-                           "rangoEdad='" + spEdad.getSelectedItem().toString() +"',"+
-                           "numeroTelefono='" + etNumeroTelefono.getText() + "',"+
-                           "direccion='"+ etDireccion.getText() +"'," +
-                           "localidad='"+ etLocalidad.getText() + "'," +
-                           "cp='"+ etCp.getText() +"'," +
-                           "genero='"+genero+"'," +
-                           "coloresFavoritos='"+ getColores() +"' " +*/
+
+
     public boolean validarEditText(EditText et){
         if(et.length()==0){
             et.setError("Complete este campo");

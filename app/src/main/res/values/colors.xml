@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="rosaLetras">#f2256b</color>
-    <color name="colorPrimary">#FF9900</color>
+    <color name="colorPrimary">#ff9900</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorGris">#CCCCCC</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#f56696</color>
     <color name="fondoMain">#FFFFFFFF</color>
     <color name="filaArtCodArt">#00bbff</color>
     <color name="filaArtNombre">#ff9d00</color>

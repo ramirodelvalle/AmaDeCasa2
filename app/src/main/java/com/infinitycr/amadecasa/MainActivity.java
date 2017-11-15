@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cargarUsuario();
 
 
-        /*
+
         manejadorBD = ManejadorBaseDeDatos.instance();
         Cursor cursor = manejadorBD.select("SELECT * FROM articulos");
         String cod;
@@ -67,12 +67,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String precio;
 
         String[] marcas = new String[500];
-
+/*
         BD bdArticulos = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdArticulos.getWritableDatabase();
-
+        db.execSQL("DROP TABLE IF EXISTS marcasArt");
+        db.execSQL(bdArticulos.actualizarTablaMarcasArt());
         for (int i=0; i<500; i++) {
-            marcas[i] = new String();
+            //marcas[i] = new String();
             marcas[i] = "";
         }
         int pos=0;
@@ -96,14 +97,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     pos++;
                 }
             }
-
         }
-        cursor.close();*/
+        cursor.close();
+*/
     }
 
     public void funAgregarCat(SQLiteDatabase db,String marca){
         try {
-            String consulta = "INSERT INTO categoriasArt(categoria)"+
+            String consulta = "INSERT INTO marcasArt(nombreMarca)"+
                     "VALUES('"+marca+"')";
             //INSERTAR UN REGISTRO
             db.execSQL(consulta);
