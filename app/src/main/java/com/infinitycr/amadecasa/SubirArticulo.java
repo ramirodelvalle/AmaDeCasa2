@@ -37,7 +37,6 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
 
     Articulo articulo = new Articulo();
     ImageView ivFoto;
-    Intent intentImagen; //INTENT PARA SACAR LA FOTO
     Bitmap bmp; //IMAGEN OBTENIDA DE LA CAMARA
     Button btnTomarFoto;
     Button btnCargarTabla;
@@ -46,7 +45,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
     Spinner spSubCategoria;
     Button btnAgregarArticulo;
     Button btnLeerArticulo;
-    EditText etCodigo;
+    EditText etCodArticulo;
     EditText etNombrePrenda;
     EditText etDescripcionPrenda;
     EditText etPrecioPrenda;
@@ -93,8 +92,8 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         btnAgregarArticulo.setOnClickListener(this);
         btnLeerArticulo = (Button) findViewById(R.id.btnLeerArticulo);
         btnLeerArticulo.setOnClickListener(this);
-        etCodigo = (EditText) findViewById(R.id.etCodigo);
-        //etNombrePrenda = (EditText) findViewById(R.id.etNombrePrenda);
+        etCodArticulo = (EditText) findViewById(R.id.etCodArticulo);
+        etNombrePrenda = (EditText) findViewById(R.id.etNombrePrenda);
         //etDescripcionPrenda = (EditText) findViewById(R.id.etDescripcionPrenda);
         etPrecioPrenda = (EditText) findViewById(R.id.etPrecioPrenda);
         radioButtonM = (RadioButton) findViewById(R.id.radioButtonM);
@@ -474,9 +473,6 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         categorias[i].setNombrePrenda("conjuntos");
         categorias[i].setGenero("femenino");
 
-
-
-
         for (i = 0; i < 23; i++) {
             try {
                 String consulta = "INSERT INTO categoriasArt (categoria,genero)" +
@@ -524,30 +520,38 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
 
     public void funAgregarArticulo(SQLiteDatabase db){
         //articulo.setCodigo(etCodigo.getText().toString());
-        //articulo.setNombrePrenda(etNombrePrenda.getText().toString());
+        articulo.setCodArticulo(etCodArticulo.getText().toString());
         articulo.setCategoria(spCategoria.getSelectedItem().toString());
-        //articulo.setDescripcion(etDescripcionPrenda.getText().toString());
+        articulo.setSubCategoria(spSubCategoria.getSelectedItem().toString());
         //articulo.setPrecio(etPrecioPrenda.getText().toString());
         articulo.setColores(getColores());
         //articulo.setMarca(spMarca.getSelectedItem().toString());
         if (radioButtonF.isChecked()) {articulo.setGenero("femenino");} else {articulo.setGenero("masculino");}
-        try {
-            String consulta = "INSERT INTO articulos (codigo,nombre,categoria,descripcion,precio,colores,genero,marca)"+
-                    "VALUES('"+articulo.getCodigo()+"','"+articulo.getNombrePrenda()+"','"+articulo.getCategoria()+"','"+
-                    articulo.getDescripcion()+ "','"+articulo.getPrecio()+"','" +
-                    articulo.getColores()+"','"+articulo.getGenero()+"','"+articulo.getMarca()+"')";
+        try {/*
+            String consulta = "INSERT INTO articulos (codArticulo,categoria,subCategoria," +
+                        "colores,genero)"+
+                        "VALUES('"+articulo.getCodArticulo()+"','"+articulo.getNombrePrenda()+"','"+
+                        articulo.getCategoria()+"','"+articulo.getCategoria()+"','"+
+                        articulo.getColores()+"','"+articulo.getGenero()+"')";*/
             //INSERTAR UN REGISTRO
-            db.execSQL(consulta);
+            //db.execSQL(consulta);
             //Actualizar un registro
-            //db.execSQL("UPDATE articulos SET nombre='tanga',descripcion='grande' WHERE codArticulo=1 ");
+            String consulta = "UPDATE articulos SET " +
+                    "categoria='"+articulo.getCategoria()+"'," +
+                    "subCategoria='"+articulo.getSubCategoria()+"'," +
+                    "colores='"+articulo.getColores()+"'," +
+                    "genero='"+articulo.getGenero()+"' " +
+                    "WHERE codArticulo='\"" + articulo.getCodArticulo() + "\"'";
+            db.execSQL(consulta);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+        /*
         //LEO EL ARTICULO RECIEN CREADO PARA TRAER EL NUMERO DEL ARTICULO Y CREAR SU IMAGEN EN MEMORIA CON ESE NUMERO
-        Cursor c = db.rawQuery("SELECT * FROM articulos WHERE nombre = '"+
-                               articulo.getNombrePrenda()+"'", null);
+        Cursor c = db.rawQuery("SELECT * " +
+                "FROM articulos WHERE codArticulo=\"" + articulo.getCodArticulo() + "\"", null);
         //Nos aseguramos de que existe al menos un registro
         int i = 0;
         int codArt = 0;
@@ -559,13 +563,14 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
                 i++;
             } while(c.moveToNext());
         }
+        */
         db.close();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray();
         try {
             FileOutputStream outputStream = getApplicationContext().openFileOutput(
-                    codArt+".png", Context.MODE_PRIVATE);
+                    "\""+articulo.getCodArticulo()+"\""+".png", Context.MODE_PRIVATE);
             outputStream.write(byteArray);
             outputStream.close();
         } catch (FileNotFoundException e) {
@@ -667,20 +672,24 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
     public void onClick (View v){
         BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
         SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
+        Intent intent;
         switch (v.getId()) {
             case R.id.btnTomarFoto:
-                intentImagen = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //ABRE LA ACTIVIDAD DE LA CAMARA
-                startActivityForResult(intentImagen, 0);
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //ABRE LA ACTIVIDAD DE LA CAMARA
+                startActivityForResult(intent, 0);
                 break;
 
             case R.id.btnAgregarArticulo:
                 boolean correcto = true;
-                correcto = validarEditText(etNombrePrenda);
+                /*correcto = validarEditText(etNombrePrenda);
                 correcto = validarEditText(etDescripcionPrenda);
                 correcto = validarEditText(etPrecioPrenda);
+                */
                 if(correcto){
                     try {
                         funAgregarArticulo(db);
+                        intent = new Intent(this,MainActivity.class);   //busca la pantalla q va a abrir
+                        startActivity(intent);  //ABRE LA ACTIVITY
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -706,7 +715,11 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.btnBorrarTabla:
-                db.execSQL("DROP TABLE IF EXISTS codSubCategoria");
+                db.execSQL("DROP TABLE IF EXISTS articulos");
+                db.execSQL("DROP TABLE IF EXISTS categoriasArt");
+                db.execSQL("DROP TABLE IF EXISTS subCategoriasArt");
+                db.execSQL(bdPaoPrendas.actualizarTablaArt());
+                db.execSQL(bdPaoPrendas.actualizarTablaCategoriasArt());
                 db.execSQL(bdPaoPrendas.actualizarTablaSubCategoriasArt());
                 break;
 

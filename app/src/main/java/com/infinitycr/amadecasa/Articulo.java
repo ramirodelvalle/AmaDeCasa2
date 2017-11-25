@@ -17,12 +17,13 @@ import java.io.Serializable;
 public class Articulo implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    private int CodArticulo;
+    private int CodTabla;
     private String Codigo;
     private String NombrePrenda;
     private String Descripcion;
     private String Colores;
     private String Categoria;
+    private String SubCategoria;
     private String Precio;
     private String Genero;
     private String Marca;
@@ -31,25 +32,26 @@ public class Articulo implements Serializable{
 
     public Articulo(){}
 
-    public Articulo(int codArticulo,String codigo,String nombrePrenda,String descripcion,String colores,
-                    String categoria,String precio,FileInputStream rutaImagen,String genero,String marca){
+    public Articulo(int codTabla,String codigo,String nombrePrenda,String descripcion,String colores,
+                    String categoria,String subCategoria,String precio,FileInputStream rutaImagen,String genero,String marca){
         super();
-        this.CodArticulo = codArticulo;
+        this.CodTabla = codTabla;
         this.Codigo = codigo;
         this.NombrePrenda = nombrePrenda;
         this.Descripcion = descripcion;
         this.Colores = colores;
         this.Categoria = categoria;
+        this.Categoria = subCategoria;
         this.Precio = precio;
         this.RutaImagen = rutaImagen;
         this.Genero = genero;
         this.Marca = marca;
     }
 
-    void setCodArticulo(int codArticulo){
-        CodArticulo = codArticulo;
+    void setCodTabla(int codTabla){
+        CodTabla = codTabla;
     }
-    void setCodigo(String codigo){
+    void setCodArticulo(String codigo){
         Codigo = codigo;
     }
     void setNombrePrenda(String nombrePrenda){
@@ -64,6 +66,9 @@ public class Articulo implements Serializable{
     void setCategoria(String categoria){
         Categoria = categoria;
     }
+    void setSubCategoria(String subCategoria){
+        SubCategoria = subCategoria;
+    }
     void setPrecio(String precio){
         Precio = precio;
     }
@@ -76,10 +81,10 @@ public class Articulo implements Serializable{
         imagen = bmp;
     }
 
-    int getCodArticulo(){
-        return CodArticulo;
+    int getCodTabla(){
+        return CodTabla;
     }
-    String getCodigo(){
+    String getCodArticulo(){
         return Codigo;
     }
     String getNombrePrenda(){
@@ -94,6 +99,9 @@ public class Articulo implements Serializable{
     String getCategoria(){
         return Categoria;
     }
+    String getSubCategoria(){
+        return SubCategoria;
+    }
     String getPrecio(){return Precio;}
     String getGenero(){return Genero;}
     String getMarca(){return Marca;}
@@ -105,10 +113,10 @@ public class Articulo implements Serializable{
     }
 
 
-    @Override
-    public String toString(){
-        return this.NombrePrenda;
-    }
+   // @Override
+    //public String toString(){
+        //return this.NombrePrenda;
+   // }
 
     // Constant with a file name
     public static String fileName = "createResumeForm.ser";

@@ -16,9 +16,11 @@ import java.io.IOException;
 
 public class BD extends SQLiteOpenHelper{
 
-    String SQL_CREAR_TABLA_ARTICULOS = "CREATE TABLE articulos (codArt INTEGER PRIMARY KEY AUTOINCREMENT, codigo TEXT," +
-                                       "nombre TEXT, categoria TEXT, descripcion TEXT, precio TEXT," +
-                                       "colores TEXT, genero TEXT,marca TEXT)";
+    String SQL_CREAR_TABLA_ARTICULOS = "CREATE TABLE articulos (" +
+                                        "codTabla INTEGER PRIMARY KEY AUTOINCREMENT, codArticulo TEXT," +
+                                        "categoria TEXT, subCategoria TEXT, " +
+                                        "precio TEXT," +
+                                        "colores TEXT, genero TEXT,marca TEXT)";
 
     String SQL_CREAR_TABLA_USUARIOS = "CREATE TABLE usuarios (mailUsuario TEXT PRIMARY KEY,nombre TEXT,passWord TEXT," +
                                       "rangoEdad TEXT, numeroTelefono TEXT, direccion TEXT, localidad TEXT, cp INT, genero TEXT, coloresFavoritos TEXT) ";

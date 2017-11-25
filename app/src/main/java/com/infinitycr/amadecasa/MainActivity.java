@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,49 +58,68 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         activity = this;
 
         cargarUsuario();
+        funCargarMarcas();
+    }
 
+    public void funCargarMarcas() {//SI YA SE INSTALO NO ENTRA EN ESTA FUNCION
+        SharedPreferences preferences = getSharedPreferences("sesion",Context.MODE_PRIVATE);
+        String instalo = preferences.getString("instalo","no");
+        if(!preferences.getString("instalo","no").contains("si")){
+            manejadorBD = ManejadorBaseDeDatos.instance();
+            Cursor cursor = manejadorBD.select("SELECT * FROM articulos");
+            String cod;
+            String marca;
+            String precio;
 
+            String[] marcas = new String[500];
 
-        manejadorBD = ManejadorBaseDeDatos.instance();
-        Cursor cursor = manejadorBD.select("SELECT * FROM articulos");
-        String cod;
-        String marca;
-        String precio;
-
-        String[] marcas = new String[500];
-/*
-        BD bdArticulos = new BD(this, "BDPP", null, 1);
-        SQLiteDatabase db = bdArticulos.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS marcasArt");
-        db.execSQL(bdArticulos.actualizarTablaMarcasArt());
-        for (int i=0; i<500; i++) {
-            //marcas[i] = new String();
-            marcas[i] = "";
-        }
-        int pos=0;
-        while (cursor.moveToNext()) {
-            cod = cursor.getString(0);
-            marca = cursor.getString(1);
-            precio = cursor.getString(2);
-
-            if(marca.contains("ZAILU MALLAS")){
-                String asd = "0";
-            }
-            boolean esta=false;
+            BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
+            SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
+            db.execSQL("DROP TABLE IF EXISTS marcasArt");
+            db.execSQL(bdPaoPrendas.actualizarTablaMarcasArt());
+            db.execSQL("DROP TABLE IF EXISTS articulos");
+            db.execSQL(bdPaoPrendas.actualizarTablaArt());
             for (int i=0; i<500; i++) {
-                if(marcas[i].contains(marca)){
-                    esta = true;
+                marcas[i] = "";
+            }
+            int pos=0;
+            while (cursor.moveToNext()) {
+                cod = cursor.getString(0);
+                marca = cursor.getString(1);
+                precio = cursor.getString(2);
+                try {
+                    String consulta = "INSERT INTO articulos (codArticulo,precio,marca)"+
+                            "VALUES('"+cod+"','"+precio+"','"+marca+"')";
+                    //INSERTAR UN REGISTRO
+                    db.execSQL(consulta);
                 }
-                if(i==499 && esta==false){
-                    marcas[pos] = marca;
-                    funAgregarCat(db,marca);
-                    esta = true;
-                    pos++;
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+                if(marca.contains("ZAILU MALLAS")){
+                    String asd = "0";
+                }
+                boolean esta=false;
+                for (int i=0; i<500; i++) {
+                    if(marcas[i].contains(marca)){
+                        esta = true;
+                    }
+                    if(i==499 && esta==false){
+                        marcas[pos] = marca;
+                        funAgregarCat(db,marca);
+                        esta = true;
+                        pos++;
+                    }
                 }
             }
+            cursor.close();
+            SharedPreferences preferences2 = getSharedPreferences("sesion",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences2.edit();
+            editor.putString("instalo","si");
+            editor.apply();
         }
-        cursor.close();
-*/
+
     }
 
     public void funAgregarCat(SQLiteDatabase db,String marca){

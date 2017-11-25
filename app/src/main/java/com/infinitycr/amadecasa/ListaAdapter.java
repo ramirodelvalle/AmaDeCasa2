@@ -1,7 +1,6 @@
 package com.infinitycr.amadecasa;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 
 /**
  * Created by ramir on 15/8/2017.
@@ -51,8 +49,8 @@ public class ListaAdapter extends BaseAdapter {
 
         // Declare Variables
         TextView tvCodArticulo;
-        TextView tvNombrePrenda;
-        TextView tvDescripcionPrenda;
+        TextView tvCategoria;
+        TextView tvSubCategoria;
         TextView tvPrecioPrenda;
         TextView tvMarcaPrenda;
         ImageView imgImg;
@@ -64,16 +62,16 @@ public class ListaAdapter extends BaseAdapter {
 
         //LOCALIZA LOS TEXTVIEWS EN EL lista_formato.xml
         tvCodArticulo = (TextView) itemView.findViewById(R.id.tvCodArticulo);
-        tvNombrePrenda = (TextView) itemView.findViewById(R.id.tvNombrePrenda);
-        tvDescripcionPrenda = (TextView) itemView.findViewById(R.id.tvDescripcionPrenda);
+        tvCategoria = (TextView) itemView.findViewById(R.id.tvCategoria);
+        tvSubCategoria = (TextView) itemView.findViewById(R.id.tvSubCategoria);
         tvPrecioPrenda = (TextView) itemView.findViewById(R.id.tvPrecioPrenda);
         tvMarcaPrenda = (TextView) itemView.findViewById(R.id.tvMarcaPrenda);
         imgImg = (ImageView) itemView.findViewById(R.id.iconLista);
 
         //CAPTURA LA POSICION DEL ARTICULO Y SETEA LOS TextViews
-        tvCodArticulo.setText(String.valueOf(articulo[position].getCodigo()));
-        tvNombrePrenda.setText(articulo[position].getNombrePrenda());
-        tvDescripcionPrenda.setText(articulo[position].getDescripcion());
+        tvCodArticulo.setText(String.valueOf(articulo[position].getCodArticulo()));
+        tvCategoria.setText(articulo[position].getCategoria());
+        tvSubCategoria.setText(articulo[position].getSubCategoria());
         tvPrecioPrenda.setText("$ "+String.valueOf(articulo[position].getPrecio()));
         tvMarcaPrenda.setText(articulo[position].getMarca());
         imgImg.setImageBitmap(imagenes[position]);

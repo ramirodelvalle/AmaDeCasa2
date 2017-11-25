@@ -22,6 +22,7 @@ public class OpcArticulos extends AppCompatActivity implements View.OnClickListe
 
     Spinner spMarca;
     Spinner spCategoria;
+    Spinner spSubCategoria;
     Spinner spPrecio;
     RadioButton radioButtonM;
     RadioButton radioButtonF;
@@ -43,6 +44,7 @@ public class OpcArticulos extends AppCompatActivity implements View.OnClickListe
 
         asigObjXML();
         asigSpinners();
+
     }
 
     public void asigObjXML(){
@@ -57,42 +59,46 @@ public class OpcArticulos extends AppCompatActivity implements View.OnClickListe
     }
 
     public void asigSpinners(){
-        //////////////////////////////////  SPINNER/DROP DOWN LIST
+        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
+        final SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS categoriasArt");   //BORRO LAS TABLAS Y LAS VUELVO A CREAR
+        db.execSQL(bdPaoPrendas.actualizarTablaCategoriasArt());
+        db.execSQL("DROP TABLE IF EXISTS subCategoriasArt");
+        db.execSQL(bdPaoPrendas.actualizarTablaSubCategoriasArt());
+        cargarCategorias(db);
+        cargarTalles(db);
+
+        //////////////////////////////////  SPINNER CATEGORIAS
         spCategoria = (Spinner) findViewById(R.id.spCategoria);
-        List list = new ArrayList();
-        list.add("-Vacio-");
-        list.add("Bombachas");
-        list.add("Buzos");
-        list.add("Boxer");
-        list.add("Corpiños");
-        list.add("Conjuntos");
-        list.add("Mallas");
-        list.add("Medias");
-        list.add("Moda");
-        list.add("Pijamas");
-        list.add("Pantalones");
-        list.add("Remeras");
-        list.add("Ropa deportiva");
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spCategoria.setAdapter(arrayAdapter);
+        spCategoria.setAdapter(traerLista(db));
         spCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spSubCategoria.setAdapter(traerLista(spCategoria.getSelectedItem().toString(),db));
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        //////////////////////////////////  SPINNER/DROP DOWN LIST
+        spSubCategoria = (Spinner) findViewById(R.id.spSubCategoria);
+        spSubCategoria.setAdapter(traerLista(spCategoria.getSelectedItem().toString(),db));
+        spSubCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(SubirArticulo.this, "asdasd", Toast.LENGTH_SHORT).show();
             }   //muestra el elemento seleccionado
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+
         //////////////////////////////////  SPINNER/DROP DOWN LIST
         spMarca = (Spinner) findViewById(R.id.spMarca);
         List list2 = new ArrayList();
         list2.add("-Vacio-");
-        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);
-        SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
-        //bdPaoPrendas.onUpgrade(db,1,1);
-        Cursor c = db.rawQuery("SELECT * FROM categoriasArt ORDER BY categoria asc", null);
+        Cursor c = db.rawQuery("SELECT * FROM marcasArt ORDER BY nombreMarca asc", null);
         if (c.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             do {
@@ -104,7 +110,8 @@ public class OpcArticulos extends AppCompatActivity implements View.OnClickListe
         ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list2);
         arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spMarca.setAdapter(arrayAdapter2);
-        ///////////////////////////////
+
+        //////////////////////////////////  SPINNER/DROP DOWN LIST
         List list3 = new ArrayList();
         list3.add("-Vacio-");
         list3.add("Mayor Precio");
@@ -112,6 +119,306 @@ public class OpcArticulos extends AppCompatActivity implements View.OnClickListe
         ArrayAdapter arrayAdapter3 = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, list3);
         arrayAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spPrecio.setAdapter(arrayAdapter3);
+        //////////////////////////////////  SPINNER/DROP DOWN LIST
+    }
+
+    public void cargarCategorias(SQLiteDatabase db){
+        Articulo categorias[] = new Articulo[23];
+        int i = 0;
+        categorias[i] = new Articulo();
+        categorias[i].setNombrePrenda("bombachas");
+        categorias[i].setGenero("femenino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("conjuntos");
+        categorias[i].setGenero("femenino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("calzados");
+        categorias[i].setGenero("femenino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("buzos");
+        categorias[i].setGenero("femenino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("calzas");
+        categorias[i].setGenero("femenino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("remeras");
+        categorias[i].setGenero("femenino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("camisas");
+        categorias[i].setGenero("femenino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("vestidos");
+        categorias[i].setGenero("femenino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("mallas");
+        categorias[i].setGenero("femenino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("boxers");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("remeras");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("medias");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("pantalones");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("pijamas");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("batas");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("calzado");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("camperas");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("buzos");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("remeras");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("calzas");
+        categorias[i].setGenero("masculino");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("shorts");
+        categorias[i].setGenero("masculino");
+
+
+
+        for (i=0; i<23; i++) {
+            try {
+                String consulta = "INSERT INTO categoriasArt (categoria,genero)"+
+                        "VALUES('"+categorias[i].getNombrePrenda()+"'," +
+                        "'"+categorias[i].getGenero()+"')";
+                //INSERTAR UN REGISTRO
+                db.execSQL(consulta);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        Articulo subCategorias[] = new Articulo[19];
+        i = 0;
+        subCategorias[i] = new Articulo();
+        subCategorias[i].setNombrePrenda("bombacha");
+        subCategorias[i].setCategoria("bombachas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("cola less");
+        subCategorias[i].setCategoria("bombachas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("culotte");
+        subCategorias[i].setCategoria("bombachas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("vedetina");
+        subCategorias[i].setCategoria("bombachas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("mini short");
+        subCategorias[i].setCategoria("bombachas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("deportivo");
+        subCategorias[i].setCategoria("conjuntos");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("soft");
+        subCategorias[i].setCategoria("conjuntos");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("disfraces");
+        subCategorias[i].setCategoria("conjuntos");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pijamas");
+        subCategorias[i].setCategoria("conjuntos");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("batas");
+        subCategorias[i].setCategoria("conjuntos");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pantuflas");
+        subCategorias[i].setCategoria("calzado");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("chinelas");
+        subCategorias[i].setCategoria("calzado");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("botitas");
+        subCategorias[i].setCategoria("calzado");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("con cierre");
+        subCategorias[i].setCategoria("buzos");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("sin cierre");
+        subCategorias[i].setCategoria("buzos");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("camperas");
+        subCategorias[i].setCategoria("camperas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("chupin");
+        subCategorias[i].setCategoria("calzas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("recta");
+        subCategorias[i].setCategoria("calzas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("chupin");
+        subCategorias[i].setCategoria("calzas");
+        subCategorias[i].setGenero("femenino");
+
+        int b = i;
+        for (i=0; i<=b; i++) {
+            try {
+                String consulta = "INSERT INTO subCategoriasArt (subCategoria,categoria,genero)"+
+                        "VALUES('"+subCategorias[i].getNombrePrenda()+"','" +
+                        subCategorias[i].getCategoria()+"','" +
+                        subCategorias[i].getGenero()+"')";
+                //INSERTAR UN REGISTRO
+                db.execSQL(consulta);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        //db.close();
+    }
+
+    public ArrayAdapter traerLista(SQLiteDatabase db){
+        List array = new ArrayList();
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, array);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Cursor c;
+        if(radioButtonM.isChecked()){
+            c = db.rawQuery("SELECT * FROM categoriasArt WHERE genero='masculino' ORDER BY" +
+                    " categoria ASC", null);
+        }
+        else {
+            c = db.rawQuery("SELECT * FROM categoriasArt WHERE genero='femenino' ORDER BY" +
+                    " categoria ASC", null);
+        }
+        int i = 0;
+        array.add("-Vacio-");
+        if (c.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya mas registros
+            do {
+                String cate = c.getString(0);
+                array.add(cate);
+                i++;
+            } while(c.moveToNext());
+        }
+        //c.close();
+        return arrayAdapter;
+    }
+
+    public void cargarTalles(SQLiteDatabase db) {
+        Articulo categorias[] = new Articulo[23];
+        int i = 0;
+        categorias[i] = new Articulo();
+        categorias[i].setCategoria("conjuntos");
+        categorias[i].setNombrePrenda("camisones");
+        categorias[i].setGenero("femenino");
+        categorias[i].setDescripcion("1 y 2");
+
+        categorias[++i] = new Articulo();
+        categorias[i].setNombrePrenda("conjuntos");
+        categorias[i].setGenero("femenino");
+
+        for (i = 0; i < 23; i++) {
+            try {
+                String consulta = "INSERT INTO categoriasArt (categoria,genero)" +
+                        "VALUES('" + categorias[i].getNombrePrenda() + "'," +
+                        "'" + categorias[i].getGenero() + "')";
+                //INSERTAR UN REGISTRO
+                db.execSQL(consulta);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public ArrayAdapter traerLista(String categoria, SQLiteDatabase db){
+        List array = new ArrayList();
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, array);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Cursor c;
+        if(radioButtonM.isChecked()){
+            c = db.rawQuery("SELECT * FROM subCategoriasArt WHERE genero='masculino' " +
+                    "and categoria = '"+categoria+"' ORDER BY subCategoria ASC ", null);
+
+        }
+        else {
+            c = db.rawQuery("SELECT * FROM subCategoriasArt WHERE genero='femenino' " +
+                    "and categoria = '"+categoria+"' ORDER BY subCategoria ASC", null);
+        }
+        int i = 0;
+        array.add("-Vacio-");
+        if (c.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya mas registros
+            do {
+                String cate = c.getString(0);
+                array.add(cate);
+                i++;
+            } while(c.moveToNext());
+        }
+        //c.close();
+        return arrayAdapter;
     }
 
     public String whereOand(boolean bandera) {

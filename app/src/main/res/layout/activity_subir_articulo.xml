@@ -45,6 +45,14 @@
                 android:layout_height="wrap_content"
                 android:text="Sacar foto" />
 
+            <EditText
+                android:id="@+id/etCodArticulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="codigo articulo"
+                android:inputType="text|textPersonName|number" />
+
             <RadioGroup
                 android:id="@+id/radioGroup"
                 android:layout_width="wrap_content"

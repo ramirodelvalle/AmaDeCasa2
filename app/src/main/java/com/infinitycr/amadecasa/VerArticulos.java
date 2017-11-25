@@ -44,7 +44,7 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
     }
 
     //TRAIGO LA RUTA DE LA FOTO
-    public Bitmap cargarFoto(int codArt){
+    public Bitmap cargarFoto(String codArt){
         Bitmap bitmap = null;
         try{
             FileInputStream fileInputStream =
@@ -79,8 +79,8 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
 
         //CODIGO DE LA LISTA PARA LLENARLA  ----------------------------------------------------------------------
         final ListView lvArticulos = (ListView) findViewById(R.id.ContenlistView);
-        BD bdArticulos = new BD(this, "BDPP", null, 1);  //CREO LA CONEXION A LA BD
-        SQLiteDatabase db = bdArticulos.getWritableDatabase();
+        BD bdPaoPrendas = new BD(this, "BDPP", null, 1);  //CREO LA CONEXION A LA BD
+        SQLiteDatabase db = bdPaoPrendas.getWritableDatabase();
         String consultaSQL;
         Intent intent = getIntent();    //creo el objeto intent
         Bundle bundle = intent.getExtras(); //trae el objeto con todas las cosas q le haya pasado desde la actividad anterior
@@ -91,7 +91,8 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
             c = db.rawQuery(consultaSQL, null);
         }
         else {
-            c = db.rawQuery("SELECT * FROM articulos WHERE genero='femenino'", null);
+            //c = db.rawQuery("SELECT * FROM articulos WHERE genero='femenino'", null);
+            c = db.rawQuery("SELECT * FROM articulos", null);
         }
         //Nos aseguramos de que existe al menos un registro
         int i = 0;
@@ -100,22 +101,21 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
             imagenes = new Bitmap[c.getCount()]; //VECTOR PARA LAS IMAGENES
             //Recorremos el cursor hasta que no haya mas registros
             do {
+                int p = 0;
                 articulo[i] = new Articulo();
-                articulo[i].setCodArticulo(c.getInt(0));
-                articulo[i].setCodigo(c.getString(1));
-                articulo[i].setNombrePrenda(c.getString(2));
-                articulo[i].setCategoria(c.getString(3));
-                articulo[i].setDescripcion(c.getString(4));
-                articulo[i].setPrecio(c.getString(5));
-                articulo[i].setColores(c.getString(6));
-                articulo[i].setGenero(c.getString(7));
-                articulo[i].setMarca(c.getString(8));
+                articulo[i].setCodTabla(c.getInt(p));
+                articulo[i].setCodArticulo(c.getString(++p));
+                articulo[i].setCategoria(c.getString(++p));
+                articulo[i].setSubCategoria(c.getString(++p));
+                articulo[i].setPrecio(c.getString(++p));
+                articulo[i].setColores(c.getString(++p));
+                articulo[i].setGenero(c.getString(++p));
+                articulo[i].setMarca(c.getString(++p));
                 imagenes[i] = cargarFoto(articulo[i].getCodArticulo());
                 i++;
             } while(c.moveToNext());
         }
         final ListView lista = (ListView) findViewById(R.id.ContenlistView);
-
 
         //EL ADAPTADOR ADAPTA LOS DATOS PARA Q FUNCIONEN EN EL LISTVIEW
         adapter = new ListaAdapter(this,articulo,i,imagenes);

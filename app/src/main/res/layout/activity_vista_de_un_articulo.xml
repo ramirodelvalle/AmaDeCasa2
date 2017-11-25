@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/tvDescripcionPrenda"
+                android:layout_below="@+id/tvSubCategoria"
                 android:background="@color/filaArtCodArt"
                 android:text="ca"
                 android:textAlignment="center"
@@ -76,7 +76,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvNombrePrenda"
+                android:id="@+id/tvCategoria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -132,9 +132,9 @@
                 android:id="@+id/textView16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tvNombrePrenda"
-                android:layout_alignStart="@+id/tvNombrePrenda"
-                android:layout_below="@+id/tvNombrePrenda"
+                android:layout_alignLeft="@+id/tvCategoria"
+                android:layout_alignStart="@+id/tvCategoria"
+                android:layout_below="@+id/tvCategoria"
                 android:background="@color/filaArtCodArt"
                 android:text="Descripcion"
                 android:textAlignment="center"
@@ -142,7 +142,7 @@
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:id="@+id/tvDescripcionPrenda"
+                android:id="@+id/tvSubCategoria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/textView16"

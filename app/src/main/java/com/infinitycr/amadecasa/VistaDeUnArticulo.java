@@ -7,10 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.FileInputStream;
@@ -45,7 +42,7 @@ public class VistaDeUnArticulo extends AppCompatActivity implements View.OnClick
             //TRAIGO EL OBJETO Q PASE DESDE LA OTRA ACTIVITY
             articulo = (Articulo) getIntent().getExtras().getSerializable("articuloDeLista");
             //etNombreArticulo.setText(articulo.getNombrePrenda());
-            tvCodArticulo.setText(String.valueOf(articulo.getCodigo()));
+            tvCodArticulo.setText(String.valueOf(articulo.getCodArticulo()));
             tvNombrePrenda.setText(articulo.getNombrePrenda());
             tvCategoria.setText(articulo.getCategoria());
             tvPrecioPrenda.setText(String.valueOf("$ "+articulo.getPrecio()));
@@ -71,10 +68,10 @@ public class VistaDeUnArticulo extends AppCompatActivity implements View.OnClick
     public void asigObjXML(){
         ivFotoPrenda = (ImageView) findViewById(R.id.ivFotoPrenda);
         tvCodArticulo = (TextView) findViewById(R.id.tvCodArticulo);
-        tvNombrePrenda = (TextView) findViewById(R.id.tvNombrePrenda);
+        tvNombrePrenda = (TextView) findViewById(R.id.tvCategoria);
         tvCategoria = (TextView) findViewById(R.id.tvCategoria);
         tvPrecioPrenda = (TextView) findViewById(R.id.tvPrecioPrenda);
-        tvDescripcionPrenda = (TextView) findViewById(R.id.tvDescripcionPrenda);
+        tvDescripcionPrenda = (TextView) findViewById(R.id.tvSubCategoria);
         tvPrecioPrenda = (TextView) findViewById(R.id.tvPrecioPrenda);
         tvColores = (TextView) findViewById(R.id.tvColores);
         tvGenero = (TextView) findViewById(R.id.tvGenero);

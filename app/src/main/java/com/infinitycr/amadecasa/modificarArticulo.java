@@ -114,13 +114,13 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
         });
     }
 
-    public void traerArt(){
+    public void traerArt(){/*
         Intent intent = getIntent();    //creo el objeto intent
         Bundle bundle = intent.getExtras(); //trae el objeto con todas las cosas q le haya pasado desde la actividad anterior
         if(bundle!=null){   // se fija si esta vacio para q no de error
             //COMPLETO LOS CAMPOS CON LOS DATOS DEL ARTICULO
             articulo = (Articulo) getIntent().getExtras().getSerializable("articuloDeLista");
-            etCodigo.setText(articulo.getCodigo(), TextView.BufferType.EDITABLE);
+            etCodigo.setText(articulo.getCodArticulo(), TextView.BufferType.EDITABLE);
             etNombrePrenda.setText(articulo.getNombrePrenda(), TextView.BufferType.EDITABLE);
             cargarSpinner();
             etDescripcionPrenda.setText(articulo.getDescripcion(), TextView.BufferType.EDITABLE);
@@ -130,7 +130,7 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
             if (articulo.getGenero().equals("femenino")) {
                 radioButtonF.setChecked(true);
             } else {radioButtonM.setChecked(true);}
-        }
+        }*/
     }
 
     //TRAIGO LOS COLORES QUE TENIA SELECCIONADOS
@@ -244,7 +244,7 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
         return colores;
     }
 
-    public void funActualizarArticulo(SQLiteDatabase db){
+    public void funActualizarArticulo(SQLiteDatabase db){/*
         articulo.setCodigo(etCodigo.getText().toString());
         articulo.setNombrePrenda(etNombrePrenda.getText().toString());
         articulo.setCategoria(spCategoria.getSelectedItem().toString());
@@ -283,7 +283,7 @@ public class modificarArticulo extends AppCompatActivity implements View.OnClick
             e.printStackTrace();
         } catch (IOException e2) {
             e2.printStackTrace();
-        }
+        }*/
     }
 
     public int validarEditText(EditText et,int cnt){
