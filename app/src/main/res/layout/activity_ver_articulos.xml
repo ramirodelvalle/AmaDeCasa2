@@ -44,6 +44,13 @@
                     android:textColorLink="@android:color/holo_blue_dark" />
 
                 <Button
+                    android:id="@+id/btnTodos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="todos" />
+
+                <Button
                     android:id="@+id/btnFemenino"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

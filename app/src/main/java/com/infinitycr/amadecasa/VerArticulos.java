@@ -27,6 +27,7 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
     Button btnOpciones;
     Button btnMasculino;
     Button btnFemenino;
+    Button btnTodos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,8 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
         btnMasculino.setOnClickListener(this);
         btnFemenino = (Button) findViewById(R.id.btnFemenino);
         btnFemenino.setOnClickListener(this);
+        btnTodos = (Button) findViewById(R.id.btnTodos);
+        btnTodos.setOnClickListener(this);
 
         //CODIGO DE LA LISTA PARA LLENARLA  ----------------------------------------------------------------------
         final ListView lvArticulos = (ListView) findViewById(R.id.ContenlistView);
@@ -176,7 +179,11 @@ public class VerArticulos extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("consultaSQL","SELECT * FROM articulos WHERE genero='femenino'");    //pasa el dato como una cookie
                 startActivity(intent);  //abre la pantalla
                 break;
-
+            case R.id.btnTodos:
+                intent = new Intent(this,VerArticulos.class);   //busca la pantalla q va a abrir  //dar de alta en el manifest!
+                intent.putExtra("consultaSQL","SELECT * FROM articulos");    //pasa el dato como una cookie
+                startActivity(intent);  //abre la pantalla
+                break;
         }
     }
 }
