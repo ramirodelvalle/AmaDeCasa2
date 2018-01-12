@@ -110,15 +110,8 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         List array = new ArrayList();
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, array);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Cursor c;
-        if(radioButtonM.isChecked()){
-            c = db.rawQuery("SELECT * FROM categoriasArt WHERE genero='masculino' ORDER BY" +
-                    " categoria ASC", null);
-        }
-        else {
-            c = db.rawQuery("SELECT * FROM categoriasArt WHERE genero='femenino' ORDER BY" +
-                    " categoria ASC", null);
-        }
+        Cursor c = db.rawQuery("SELECT * FROM categoriasArt ORDER BY categoria ASC", null);
+
         int i = 0;
         if (c.moveToFirst()) {
             //Recorremos el cursor hasta que no haya mas registros
@@ -167,7 +160,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
         db.execSQL("DROP TABLE IF EXISTS subCategoriasArt");
         db.execSQL(bdPaoPrendas.actualizarTablaSubCategoriasArt());
         cargarCategorias(db);
-        cargarTalles(db);
+        //cargarTalles(db);
 
         //////////////////////////////////  SPINNER CATEGORIAS
         spCategoria = (Spinner) findViewById(R.id.spCategoria);
@@ -243,99 +236,31 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
     }
 
     public void cargarCategorias(SQLiteDatabase db){
-        Articulo categorias[] = new Articulo[23];
+        Articulo categorias[] = new Articulo[50];
         int i = 0;
         categorias[i] = new Articulo();
-        categorias[i].setNombrePrenda("bombachas");
-        categorias[i].setGenero("femenino");
+        categorias[i].setNombrePrenda("corseteria");
 
         categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("conjuntos");
-        categorias[i].setGenero("femenino");
+        categorias[i].setNombrePrenda("hombres");
 
         categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("calzados");
-        categorias[i].setGenero("femenino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("buzos");
-        categorias[i].setGenero("femenino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("calzas");
-        categorias[i].setGenero("femenino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("remeras");
-        categorias[i].setGenero("femenino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("camisas");
-        categorias[i].setGenero("femenino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("vestidos");
-        categorias[i].setGenero("femenino");
+        categorias[i].setNombrePrenda("lenceria");
 
         categorias[++i] = new Articulo();
         categorias[i].setNombrePrenda("mallas");
-        categorias[i].setGenero("femenino");
 
         categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("boxers");
-        categorias[i].setGenero("masculino");
+        categorias[i].setNombrePrenda("moda");
 
         categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("remeras");
-        categorias[i].setGenero("masculino");
+        categorias[i].setNombrePrenda("niños");
 
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("medias");
-        categorias[i].setGenero("masculino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("pantalones");
-        categorias[i].setGenero("masculino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("pijamas");
-        categorias[i].setGenero("masculino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("batas");
-        categorias[i].setGenero("masculino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("calzado");
-        categorias[i].setGenero("masculino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("camperas");
-        categorias[i].setGenero("masculino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("buzos");
-        categorias[i].setGenero("masculino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("remeras");
-        categorias[i].setGenero("masculino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("calzas");
-        categorias[i].setGenero("masculino");
-
-        categorias[++i] = new Articulo();
-        categorias[i].setNombrePrenda("shorts");
-        categorias[i].setGenero("masculino");
-
-
-
-        for (i=0; i<23; i++) {
+        int c = i;
+        for (i=0; i<=c; i++) {
             try {
-                String consulta = "INSERT INTO categoriasArt (categoria,genero)"+
-                        "VALUES('"+categorias[i].getNombrePrenda()+"'," +
-                        "'"+categorias[i].getGenero()+"')";
+                String consulta = "INSERT INTO categoriasArt (categoria)"+
+                        "VALUES('"+categorias[i].getNombrePrenda()+"')";
                 //INSERTAR UN REGISTRO
                 db.execSQL(consulta);
             }
@@ -345,105 +270,493 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
             }
         }
 
-        Articulo subCategorias[] = new Articulo[19];
+        Articulo subCategorias[] = new Articulo[100];
         i = 0;
         subCategorias[i] = new Articulo();
-        subCategorias[i].setNombrePrenda("bombacha");
-        subCategorias[i].setCategoria("bombachas");
+        subCategorias[i].setNombrePrenda("tasa soft");
+        subCategorias[i].setCategoria("corseteria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("cola less");
-        subCategorias[i].setCategoria("bombachas");
+        subCategorias[i].setNombrePrenda("bombachas");
+        subCategorias[i].setCategoria("corseteria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("culotte");
-        subCategorias[i].setCategoria("bombachas");
+        subCategorias[i].setNombrePrenda("otros");
+        subCategorias[i].setCategoria("corseteria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("vedetina");
-        subCategorias[i].setCategoria("bombachas");
+        subCategorias[i].setNombrePrenda("medias");
+        subCategorias[i].setCategoria("corseteria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("mini short");
-        subCategorias[i].setCategoria("bombachas");
+        subCategorias[i].setNombrePrenda("sin aro");
+        subCategorias[i].setCategoria("corseteria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
         subCategorias[i].setNombrePrenda("deportivo");
-        subCategorias[i].setCategoria("conjuntos");
+        subCategorias[i].setCategoria("corseteria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("soft");
-        subCategorias[i].setCategoria("conjuntos");
+        subCategorias[i].setNombrePrenda("erotico");
+        subCategorias[i].setCategoria("corseteria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("disfraces");
-        subCategorias[i].setCategoria("conjuntos");
+        subCategorias[i].setNombrePrenda("modelante");
+        subCategorias[i].setCategoria("corseteria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("pijamas");
-        subCategorias[i].setCategoria("conjuntos");
+        subCategorias[i].setNombrePrenda("niños");
+        subCategorias[i].setCategoria("corseteria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("batas");
-        subCategorias[i].setCategoria("conjuntos");
+        subCategorias[i].setNombrePrenda("con aro");
+        subCategorias[i].setCategoria("corseteria");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("accesorios");
+        subCategorias[i].setCategoria("corseteria");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("camisetas");
+        subCategorias[i].setCategoria("corseteria");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("lenceria");
+        subCategorias[i].setCategoria("corseteria");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("moda");
+        subCategorias[i].setCategoria("corseteria");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("push up");
+        subCategorias[i].setCategoria("corseteria");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("amamantar");
+        subCategorias[i].setCategoria("corseteria");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("strapless");
+        subCategorias[i].setCategoria("corseteria");
+        subCategorias[i].setGenero("femenino");
+
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pijama algodon");
+        subCategorias[i].setCategoria("lenceria");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("camison algodon");
+        subCategorias[i].setCategoria("lenceria");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("camisolin");
+        subCategorias[i].setCategoria("lenceria");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("camison futura mama");
+        subCategorias[i].setCategoria("lenceria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
         subCategorias[i].setNombrePrenda("pantuflas");
-        subCategorias[i].setCategoria("calzado");
+        subCategorias[i].setCategoria("lenceria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("chinelas");
-        subCategorias[i].setCategoria("calzado");
+        subCategorias[i].setNombrePrenda("batas");
+        subCategorias[i].setCategoria("lenceria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("botitas");
-        subCategorias[i].setCategoria("calzado");
+        subCategorias[i].setNombrePrenda("baby doll");
+        subCategorias[i].setCategoria("lenceria");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("con cierre");
-        subCategorias[i].setCategoria("buzos");
+        subCategorias[i].setNombrePrenda("hombres");
+        subCategorias[i].setCategoria("lenceria");
+        subCategorias[i].setGenero("femenino");
+
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("triangulo/ marilyn");
+        subCategorias[i].setCategoria("mallas");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("sin cierre");
-        subCategorias[i].setCategoria("buzos");
+        subCategorias[i].setNombrePrenda("entera comun");
+        subCategorias[i].setCategoria("mallas");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("camperas");
-        subCategorias[i].setCategoria("camperas");
+        subCategorias[i].setNombrePrenda("bando");
+        subCategorias[i].setCategoria("mallas");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("chupin");
-        subCategorias[i].setCategoria("calzas");
+        subCategorias[i].setNombrePrenda("piezas inferiores");
+        subCategorias[i].setCategoria("mallas");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("recta");
-        subCategorias[i].setCategoria("calzas");
+        subCategorias[i].setNombrePrenda("tasa soft");
+        subCategorias[i].setCategoria("mallas");
         subCategorias[i].setGenero("femenino");
 
         subCategorias[++i] = new Articulo();
-        subCategorias[i].setNombrePrenda("chupin");
-        subCategorias[i].setCategoria("calzas");
+        subCategorias[i].setNombrePrenda("tankini");
+        subCategorias[i].setCategoria("mallas");
         subCategorias[i].setGenero("femenino");
 
-        int b = i;
-        for (i=0; i<=b; i++) {
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("entera t. grandes");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("niños");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("push up/ con aro");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("bikini talles grandes");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("ojotas");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("bikini nena");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("enteriza nena");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("con short");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("entera strapless");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("hombres");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("entera deportiva");
+        subCategorias[i].setCategoria("mallas");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("remera");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("calza");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("corseteria");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("short dama");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pantalones");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pescadora");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("campera");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("vestido");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("camisa");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("ciclista");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("accesorios");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("babucha");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("buzo");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("conjunto");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("hombres");
+        subCategorias[i].setCategoria("moda");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("bebe");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("medias niño");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pijamas nena");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("juv. nena");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("slip y boxer niño");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("corseteria");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("malla bikini");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("bombacha nena");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("short de baño");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("mallas");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pijamas varon");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("malla enteriza");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("hombres");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("malla bebe");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pantuflas");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("remeras");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("buzo");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("camison");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("accesorios");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("batas");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("campera colegial");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("ojotas");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pantalon");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("short");
+        subCategorias[i].setCategoria("niños");
+        subCategorias[i].setGenero("femenino");
+
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("boxer");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("medias hombre");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("remeras");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("camiseta hombre");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("short baño");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("slip");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("bermuda");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pijamas");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pantalon");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("pantuflas de hombre");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("niños");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("ojotas");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("mallas");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("lenceria");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        subCategorias[++i] = new Articulo();
+        subCategorias[i].setNombrePrenda("moda");
+        subCategorias[i].setCategoria("hombres");
+        subCategorias[i].setGenero("masculino");
+
+        c = i;
+        for (i=0; i<=c; i++) {
             try {
                 String consulta = "INSERT INTO subCategoriasArt (subCategoria,categoria,genero)"+
                         "VALUES('"+subCategorias[i].getNombrePrenda()+"','" +
@@ -461,7 +774,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
     }
 
     public void cargarTalles(SQLiteDatabase db) {
-        Articulo categorias[] = new Articulo[23];
+        /*Articulo categorias[] = new Articulo[23];
         int i = 0;
         categorias[i] = new Articulo();
         categorias[i].setCategoria("conjuntos");
@@ -483,7 +796,7 @@ public class SubirArticulo extends AppCompatActivity implements View.OnClickList
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
 

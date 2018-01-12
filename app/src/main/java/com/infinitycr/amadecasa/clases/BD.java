@@ -26,7 +26,7 @@ public class BD extends SQLiteOpenHelper{
                                       "rangoEdad TEXT, numeroTelefono TEXT, direccion TEXT, localidad TEXT, cp INT, genero TEXT, coloresFavoritos TEXT) ";
 
     String SQL_CREAR_TABLA_CATEGORIAS_ARTICULOS = "CREATE TABLE categoriasArt(" +
-                                                  "categoria TEXT PRIMARY KEY, genero TEXT)";
+                                                  "categoria TEXT PRIMARY KEY)";
 
     String SQL_CREAR_TABLA_SUB_CATEGORIAS_ARTICULOS = "CREATE TABLE subCategoriasArt(" +
                                                       "subCategoria TEXT PRIMARY KEY,categoria TEXT, genero TEXT)";
